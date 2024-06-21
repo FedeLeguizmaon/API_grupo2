@@ -1,0 +1,57 @@
+/* Estilos para la barra de búsqueda */
+.input-search {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+}
+  
+/* Estilos para los filtros de precio */
+.price-filters {
+    margin-bottom: 10px;
+}
+  
+.price-filters input {
+    margin-right: 5px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100px;
+}
+  
+/* Estilos para los productos encontrados */
+.products-found {
+    margin-bottom: 10px;
+    color: #ff0000; /* Color rojo para resaltar el mensaje */
+}
+
+  /* Estilos para el contenedor del navbar */
+.navbar-container {
+    border: 1px solid gray;
+    margin-top: 10px;
+    padding: 20px;
+    border-radius: 10px; /* Hace que el borde sea más redondeado */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Agrega una sombra para resaltar el contenedor */
+    max-width: 600px; /* Establece un ancho máximo para el contenedor */
+    margin-left: auto; /* Centra el contenedor horizontalmente */
+    margin-right: auto; /* Centra el contenedor horizontalmente */
+    background-color: #f2f2f2;
+}
+
+.results {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra los artículos horizontalmente */
+    align-items: center; /* Centra los artículos verticalmente */
+}
+  
+/* Estilos para los artículos */
+.article {
+    border: 1px solid;
+    background-color: #e0e0e0; /* Color de fondo para el article */
+    margin: 10px;
+    width: 400px; /* Ancho fijo para los artículos */
+    padding: 20px; /* Ajusta el relleno para separar el contenido */
+    text-align: center; /* Centra el contenido dentro de los artículos */
+}

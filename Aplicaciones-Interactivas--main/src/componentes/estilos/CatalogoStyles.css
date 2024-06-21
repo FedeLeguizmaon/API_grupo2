@@ -1,0 +1,18 @@
+/* Estilos para el contenedor de productos */
+.productos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  /* Estilos para los elementos individuales de los productos */
+  .productos > div {
+    margin: 10px; /* Agrega espacio entre los elementos */
+    padding: 10px; /* Agrega relleno para separar el contenido */
+    border: 1px solid #ccc; /* Agrega una línea divisoria */
+    width: 200px; /* Establece un ancho fijo para los elementos */
+  }
+
+  .product {
+    background-color: #f2f2f2;
+  }

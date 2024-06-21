@@ -1,0 +1,44 @@
+/* HomeStyles.css */
+
+/* Estilos para el encabezado */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+  }
+  
+  /* Estilos para la barra de navegación */
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  nav ul li {
+    margin-right: 20px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  nav ul li:hover {
+    color: #ff4500; /* Cambiar el color al pasar el mouse */
+  }
+  
+  /* Estilos para el contenido principal */
+  main {
+    padding: 20px;
+  }
+  
+  /* Estilos para el botón de ver/ocultar carrito */
+  nav ul li {
+    margin-right: 20px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  nav ul li:hover {
+    color: #ff4500; /* Cambiar el color al pasar el mouse */
+  }

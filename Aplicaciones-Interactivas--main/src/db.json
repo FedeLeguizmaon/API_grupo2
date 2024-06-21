@@ -1,0 +1,277 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "Name": "Camiseta Alternativa Argentina",
+      "Descripcion": "Réplica de la camiseta alternativa de la selección de Argentina.",
+      "Precio": 90000,
+      "Stock": 15,
+      "Imagen": "path/to/imagen1.jpg"
+    },
+    {
+      "id": "2",
+      "Name": "Camiseta Independiente 1934",
+      "Descripcion": "Réplica histórica de la camiseta de Independiente del año 1934.",
+      "Precio": 80000,
+      "Stock": 10,
+      "Imagen": "path/to/imagen2.jpg"
+    },
+    {
+      "id": "3",
+      "Name": "Camiseta San Lorenzo 1974",
+      "Descripcion": "Réplica histórica de la camiseta de San Lorenzo 1974.",
+      "Precio": 80000,
+      "Stock": 20,
+      "Imagen": "path/to/imagen3.jpg"
+    },
+    {
+      "id": "d90d",
+      "Name": "Camiseta Bolivia 2010",
+      "Descripcion": "Camiseta de Bolivia utilizada la Copa America",
+      "Precio": "55000",
+      "Stock": "5",
+      "Imagen": "path/to/imagen4.jpg"
+    },
+    {
+      "id": "40ef",
+      "Name": "camiseta de river ",
+      "Descripcion": "asd",
+      "Precio": "100",
+      "Stock": "1",
+      "Imagen": ""
+    },
+    {
+      "id": "20f7",
+      "Name": "camiseta real madrid",
+      "Descripcion": "Camiseta del real madrid del 2017 de cristiano ronado",
+      "Precio": "77777",
+      "Stock": "7",
+      "Imagen": ""
+    }
+  ],
+  "compras": [
+    {
+      "id": "6102",
+      "carrito": {
+        "0": {
+          "producto": "Camiseta Alternativa Argentina",
+          "precio": 90000
+        },
+        "1": {
+          "producto": "Camiseta Bolivia 2010",
+          "precio": 55000
+        }
+      },
+      "precio_total": 137750
+    },
+    {
+      "id": "8a52",
+      "carrito": {
+        "0": {
+          "producto": "Camiseta Alternativa Argentina",
+          "precio": 90000
+        }
+      },
+      "precio_total": 81000
+    },
+    {
+      "id": "c7d2",
+      "carrito": {
+        "0": {
+          "producto": "Camiseta Alternativa Argentina",
+          "precio": 90000
+        }
+      },
+      "precio_total": 85500
+    },
+    {
+      "id": "1382",
+      "carrito": {
+        "0": {
+          "producto": "Camiseta Alternativa Argentina",
+          "precio": 90000
+        },
+        "1": {
+          "producto": "Camiseta Alternativa Argentina",
+          "precio": 90000
+        },
+        "2": {
+          "producto": "Camiseta Independiente 1934",
+          "precio": 80000
+        },
+        "3": {
+          "producto": "Camiseta San Lorenzo 1974",
+          "precio": 80000
+        }
+      },
+      "precio_total": 306000
+    },
+    {
+      "id": "72a4",
+      "carrito": {
+        "0": {
+          "producto": "Camiseta Alternativa Argentina",
+          "precio": 90000
+        },
+        "1": {
+          "producto": "Camiseta Alternativa Argentina",
+          "precio": 90000
+        },
+        "2": {
+          "producto": "Camiseta Independiente 1934",
+          "precio": 80000
+        },
+        "3": {
+          "producto": "Camiseta San Lorenzo 1974",
+          "precio": 80000
+        }
+      },
+      "precio_total": 306000
+    },
+    {
+      "id": "1c3c",
+      "carrito": {
+        "0": {
+          "producto": "Camiseta Alternativa Argentina",
+          "precio": 90000
+        },
+        "1": {
+          "producto": "Camiseta Alternativa Argentina",
+          "precio": 90000
+        }
+      },
+      "precio_total": 171000
+    },
+    {
+      "id": "b737",
+      "carrito": {
+        "0": {
+          "producto": "Camiseta Alternativa Argentina",
+          "precio": 90000
+        },
+        "1": {
+          "producto": "Camiseta Independiente 1934",
+          "precio": 80000
+        },
+        "2": {
+          "producto": "Camiseta San Lorenzo 1974",
+          "precio": 80000
+        }
+      },
+      "precio_total": 237500
+    },
+    {
+      "id": "8ee4",
+      "carrito": {
+        "0": {
+          "producto": "Camiseta Alternativa Argentina",
+          "precio": 90000
+        }
+      },
+      "precio_total": 81000
+    },
+    {
+      "id": "1f1e",
+      "carrito": {
+        "0": {
+          "producto": "Camiseta San Lorenzo 1974",
+          "precio": 80000
+        },
+        "1": {
+          "producto": "Camiseta Independiente 1934",
+          "precio": 80000
+        }
+      },
+      "precio_total": 152000
+    },
+    {
+      "id": "fa6e",
+      "carrito": {
+        "0": {
+          "producto": "Camiseta Alternativa Argentina",
+          "precio": 90000
+        }
+      },
+      "precio_total": 85500
+    },
+    {
+      "id": "2c5d",
+      "carrito": {
+        "0": {
+          "producto": "Camiseta Alternativa Argentina",
+          "precio": 90000
+        },
+        "1": {
+          "producto": "Camiseta San Lorenzo 1974",
+          "precio": 80000
+        }
+      },
+      "precio_total": 161500
+    },
+    {
+      "id": "328d",
+      "carrito": {
+        "0": {
+          "producto": "Camiseta San Lorenzo 1974",
+          "precio": 80000
+        }
+      },
+      "precio_total": 72000
+    },
+    {
+      "id": "d52f",
+      "carrito": {
+        "0": {
+          "producto": "Camiseta San Lorenzo 1974",
+          "precio": 80000
+        },
+        "1": {
+          "producto": "Camiseta San Lorenzo 1974",
+          "precio": 80000
+        }
+      },
+      "precio_total": 152000
+    },
+    {
+      "id": "c80e",
+      "carrito": {
+        "0": {
+          "producto": "Camiseta Independiente 1934",
+          "precio": 80000
+        },
+        "1": {
+          "producto": "Camiseta Independiente 1934",
+          "precio": 80000
+        },
+        "2": {
+          "producto": "camiseta de river ",
+          "precio": 100
+        }
+      },
+      "precio_total": 152095
+    },
+    {
+      "id": "20af",
+      "carrito": {
+        "0": {
+          "producto": "Camiseta San Lorenzo 1974",
+          "precio": 80000
+        }
+      },
+      "precio_total": 76000
+    },
+    {
+      "id": "8b54",
+      "Elementos": []
+    },
+    {
+      "id": "e293",
+      "Elementos": [
+        {
+          "producto": "Camiseta San Lorenzo 1974",
+          "precio": 80000
+        }
+      ]
+    }
+  ]
+}
