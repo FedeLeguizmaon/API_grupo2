@@ -1,44 +1,66 @@
-/* HomeStyles.css */
-
 /* Estilos para el encabezado */
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-  }
-  
-  /* Estilos para la barra de navegación */
-  nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-  }
-  
-  nav ul li {
-    margin-right: 20px;
-    cursor: pointer;
-    transition: color 0.3s;
-  }
-  
-  nav ul li:hover {
-    color: #ff4500; /* Cambiar el color al pasar el mouse */
-  }
-  
-  /* Estilos para el contenido principal */
-  main {
-    padding: 20px;
-  }
-  
-  /* Estilos para el botón de ver/ocultar carrito */
-  nav ul li {
-    margin-right: 20px;
-    cursor: pointer;
-    transition: color 0.3s;
-  }
-  
-  nav ul li:hover {
-    color: #ff4500; /* Cambiar el color al pasar el mouse */
-  }
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
+
+/* Estilos para la barra de navegación */
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin-right: 20px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+nav ul li:hover {
+  color: #ff4500; /* Cambiar el color al pasar el mouse */
+}
+
+/* Estilos para el contenido principal */
+main {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Estilos para el botón de ver/ocultar carrito */
+nav ul li {
+  margin-right: 20px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+nav ul li:hover {
+  color: #ff4500; /* Cambiar el color al pasar el mouse */
+}
+
+/* Estilos para la tarjeta del mensaje */
+.tarjeta-mensaje {
+  background-color: #ffcc00;
+  color: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(253, 253, 253, 0.747);
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Estilos para el footer */
+footer {
+  background-color: #e7e7e7;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+  margin-top: auto;
+}
