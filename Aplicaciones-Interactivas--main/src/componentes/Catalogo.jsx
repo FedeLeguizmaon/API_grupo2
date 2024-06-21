@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import './estilos/CatalogoStyles.css';
 import Detalle from './Detalle';
+import Navbar from './Navbar'; 
+import { useNavigate } from 'react-router-dom';
+import './estilos/CatalogoStyles.css';
+import { CarritoContext } from './CarritoContext';
 
-function Catalogo(props) {
+const Catalogo = () => {
   const [productos, setProductos] = useState([]);
   const [mostrarDetalle, setMostrarDetalle] = useState(false);
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProductos = async () => {
@@ -17,7 +21,6 @@ function Catalogo(props) {
         console.error('Error al obtener productos:', error);
       }
     };
-
     fetchProductos();
   }, []);
 
@@ -32,6 +35,7 @@ function Catalogo(props) {
 
   return (
     <div>
+      <Navbar />
       <h1>Catálogo de Productos</h1>
       <div className='productos'>
         {productos.map(producto => (
@@ -43,9 +47,14 @@ function Catalogo(props) {
           </div>
         ))}
       </div>
-      {mostrarDetalle && <Detalle producto={productoSeleccionado} cerrarDetalle={cerrarDetalle} props={props}/>}
+      {mostrarDetalle && (
+        <Detalle
+          producto={productoSeleccionado}
+          cerrarDetalle={cerrarDetalle}
+        />
+      )}
     </div>
   );
-}
+};
 
 export default Catalogo;

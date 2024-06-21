@@ -1,57 +1,52 @@
-import React, { useState } from 'react';
-import Checkout from './Checkout';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
-
-const Carrito = ({carrito, setCarrito}) => {
-    const [totalPrecios, setTotalPrecios] = useState(0);
-    const [mostrarCheckout, setMostrarCheckout] = useState(false);
-    const [mostrarCompra, setMostrarCompra] = useState(true);
-
-    const finalizarCompra = () => {
-        // Mostrar el mensaje de compra exitosa
-        setMostrarCheckout(true);
-
-        let totalPreciosTemp = 0;
-        // Recorrer el carrito con un bucle for
-        for (let i = 0; i < carrito.length; i++) {
-            // Obtener el precio del elemento actual y agregarlo al total
-            totalPreciosTemp += carrito[i].precio;
-        }
+import { CarritoContext } from './CarritoContext';
+import Checkout from './Checkout';
+import { useNavigate } from 'react-router-dom';
+const Carrito = () => {
+  const { carrito, eliminarDelCarrito, finalizarCompra } = useContext(CarritoContext);
+  const [totalPrecios, setTotalPrecios] = useState(0);
+  const [checkout, setCheckout] = useState(false);
+  const navigate = useNavigate();
+  const handleFinalizarCompra = () => {
    
+        let totalPreciosTemp = carrito.reduce((total, item) => total + item.precio, 0);
         setTotalPrecios(totalPreciosTemp);
+        
+        navigate('/checkout', { state: { carrito, totalPrecios: totalPreciosTemp } });
+        finalizarCompra()
+      };
+  
 
-        // Limpiar el carrito
-        setCarrito([]);
+  const saveCarrito = async () => {
+    try {
+      const response = await axios.post('http://localhost:3001/compras', {
+        Elementos: carrito
+      });
+      return response;
+    } catch (error) {
+      console.error('Error al cargar la compra:', error);
     }
+  };
 
-    const saveCarrito = async () => {
-        try {
-            const response = await axios.post('http://localhost:3001/compras', {
-                Elementos: carrito
-            })
-            return response
-        } catch(error) {
-            console.error('Error al cargar la compra:', error);
-        }
-    }
-
-    return(
-        <div>
-            <h2>Carrito de compras</h2>
-            <br />
-            
-            {mostrarCompra &&<button onClick={() => {finalizarCompra(); saveCarrito();setMostrarCompra(false)} }>Realizar Compra</button>}
-            {mostrarCheckout && <Checkout totalPrecios={totalPrecios}/>}
-
-            <ul>
-                {carrito.map((item, index) => {
-                    return(<li key={index}> {item.producto} - {item.precio}</li>);
-                })}
-
-            </ul>
-        </div>
-    )
-}
-
+  return (
+    <div>
+      <h2>Carrito de compras</h2>
+      <ul>
+        {carrito && carrito.length > 0 ? (
+          carrito.map((item, index) => (
+            <li key={index}>
+              {item.producto} - {item.precio}
+              <button onClick={() => eliminarDelCarrito(item.producto, item.precio)}>Eliminar</button>
+            </li>
+          ))
+        ) : (
+          <li>No hay elementos en el carrito</li>
+        )}
+      </ul>
+      <button onClick={handleFinalizarCompra}>Finalizar compra</button>
+    </div>
+  );
+};
 
 export default Carrito;

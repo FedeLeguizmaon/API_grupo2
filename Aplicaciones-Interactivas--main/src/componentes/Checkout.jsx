@@ -1,36 +1,52 @@
-import Descuentos from './Descuentos';
 import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import Descuentos from './Descuentos';
+import { useCarrito } from './CarritoContext';
 
-const Checkout = function(props) {
-    const [mostrarDescuentos, setMostrarDescuentos] = useState(false);
-    const [precioTotal, setPrecioTotal] = useState(props.totalPrecios);
-    const [mostrarMetodo,setMostrarMetodo] = useState(true)
-   
-    const actualizarPrecio = (nuevoPrecio) => {
-        setPrecioTotal(nuevoPrecio);
-    }
+const Checkout = () => {
+  const { carrito, vaciarCarrito } = useCarrito();
+  const location = useLocation();
+  const { totalPrecios } = location.state || { totalPrecios: 0 };
+  const [mostrarDescuentos, setMostrarDescuentos] = useState(false);
+  const [precioTotal, setPrecioTotal] = useState(totalPrecios);
+  const [mostrarMetodo, setMostrarMetodo] = useState(true);
+  const navigate = useNavigate();
 
-    const ElegirMetodoDePago = () => {
-        setMostrarDescuentos(true);
-    }
-    
-    const MostrarMetodo =()=>{
-        setMostrarMetodo(false);
-    }
-   
-    
-    return( 
+  const actualizarPrecio = (nuevoPrecio) => {
+    setPrecioTotal(nuevoPrecio);
+  }
+
+  const ElegirMetodoDePago = () => {
+    setMostrarDescuentos(true);
+  }
+
+  
+
+  return (
+    <>
+      {!mostrarMetodo && (
         <>
-            {!mostrarMetodo && <h1>compra exitosa</h1>}
-            <h2>Precio de la compra: {precioTotal}</h2>
-
-            {mostrarMetodo &&!mostrarDescuentos && <button onClick={ElegirMetodoDePago}>Eligir Metodo De Pago</button>}
-            { mostrarDescuentos && <Descuentos actualizarPrecio={actualizarPrecio} totalPrecios={precioTotal} 
-             setMostrarDescuentos={setMostrarDescuentos} mostrarDescuentos={mostrarDescuentos} 
-             setMostrarMetodo={setMostrarMetodo} mostrarMetodo={mostrarMetodo} />}
-           
+          <h1>Compra exitosa</h1>
+          <button onClick={() => navigate('/')}>Regresar al inicio</button>
         </>
-    );
+      )}
+      <h2>Precio de la compra: {precioTotal}</h2>
+      {mostrarMetodo && !mostrarDescuentos && (
+        <button onClick={ElegirMetodoDePago}>Elegir Método De Pago</button>
+      )}
+      {mostrarDescuentos && (
+        <Descuentos
+          actualizarPrecio={actualizarPrecio}
+          totalPrecios={precioTotal}
+          setMostrarDescuentos={setMostrarDescuentos}
+          mostrarDescuentos={mostrarDescuentos}
+          setMostrarMetodo={setMostrarMetodo}
+          mostrarMetodo={mostrarMetodo}
+        />
+      )}
+      
+    </>
+  );
 }
 
 export default Checkout;
