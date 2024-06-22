@@ -7,9 +7,10 @@ const Carrito = () => {
   const { carrito, eliminarDelCarrito, finalizarCompra } = useContext(CarritoContext);
   const [totalPrecios, setTotalPrecios] = useState(0);
   const [checkout, setCheckout] = useState(false);
+  const[finalizar,setFinalizar]= useState(false);
   const navigate = useNavigate();
   const handleFinalizarCompra = () => {
-   
+    setFinalizar(true);
         let totalPreciosTemp = carrito.reduce((total, item) => total + item.precio, 0);
         setTotalPrecios(totalPreciosTemp);
         
@@ -33,18 +34,19 @@ const Carrito = () => {
     <div>
       <h2>Carrito de compras</h2>
       <ul>
-        {carrito && carrito.length > 0 ? (
+        {!finalizar && carrito && carrito.length > 0 ? (
           carrito.map((item, index) => (
             <li key={index}>
               {item.producto} - {item.precio}
               <button onClick={() => eliminarDelCarrito(item.producto, item.precio)}>Eliminar</button>
+              <button onClick={handleFinalizarCompra}>Finalizar compra</button>
             </li>
           ))
         ) : (
           <li>No hay elementos en el carrito</li>
         )}
       </ul>
-      <button onClick={handleFinalizarCompra}>Finalizar compra</button>
+      
     </div>
   );
 };

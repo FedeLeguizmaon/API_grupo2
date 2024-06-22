@@ -9,14 +9,14 @@ header {
 /* Estilos para la barra de navegación */
 nav ul {
   list-style: none;
-  padding: 0;
+  padding: 0%;
   margin: 0;
   display: flex;
   justify-content: center;
 }
 
 nav ul li {
-  margin-right: 20px;
+  margin-right: 40px;
   cursor: pointer;
   transition: color 0.3s;
 }
@@ -82,8 +82,9 @@ nav ul li:hover {
 }
 
 .Tipo_de_Remeras .card {
-  background-color: #615a5a44;
-  
+  font-family: 'Arial black', sans-serif;
+  background-color: #fafafa;
+  color: #141414dc;
   border-radius: 30px;
   box-shadow: 10PX 4px 8px rgba(253, 253, 253, 0.438);
   padding: 60px;
@@ -98,4 +99,10 @@ footer.footer {
   text-align: center;
   margin-top: auto;
   color: #141414dc;
+}
+.imagenes {
+  width: 100%; /* Asegura que la imagen ocupe todo el ancho de la tarjeta */
+  height: auto;
+  margin-top: 10px;
+  border-radius: 10px;
 }

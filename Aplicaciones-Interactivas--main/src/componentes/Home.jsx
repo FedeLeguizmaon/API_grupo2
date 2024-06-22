@@ -24,10 +24,16 @@ const Home = () => {
         </div>
       </header>
       <div className="Tipo_de_Remeras">
-    <div className="card">Disfruta de las mejores camisetas de selección aquí</div>
-    <img></img>
-    <div className="card">Disfruta de las mejores camisetas de Equipos Argentinos aquí</div>
-    <div className="card">Disfruta de las mejores camisetas de Equipos Extranjeros aquí</div>
+    <div className="card">CAMISETAS SELECCIONES
+    <img className="imagenes" src="https://cdn.iconscout.com/icon/free/png-256/free-fifa-2-283422.png" alt="Descripción de la imagen"></img>
+    </div>
+    
+    <div className="card">CAMISETAS EQUIPOS ARGENTINOS
+      <img className="imagenes" src="https://a.espncdn.com/combiner/i?img=/i/leaguelogos/soccer/500/1.png" alt=""></img>
+    </div>
+    <div className="card">CAMISETAS EQUIPOS DEL MUNDO
+    <img className="imagenes" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdeVAOBgZ3cllBRmIG1-7aQfvDqGcaWjqY1A&s" alt=""></img>
+    </div>
 </div>
       <footer className='footer'>
         <p>© 2024 Tienda de Remeras. Todos los derechos reservados.</p>

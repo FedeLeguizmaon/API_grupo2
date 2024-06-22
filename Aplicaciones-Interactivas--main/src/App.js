@@ -16,7 +16,7 @@ function Header() {
   const navigate = useNavigate();
   return (
     <header>
-      <nav>
+      <nav className='navegador'>
       
         <ul>
           <li><FontAwesomeIcon icon={faShirt} onClick={() => navigate('/')}  /></li> 

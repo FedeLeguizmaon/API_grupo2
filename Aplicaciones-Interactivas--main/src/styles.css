@@ -2,18 +2,22 @@
 body {
     font-family: Arial, sans-serif;
 }
-
-/* Navegación */
-nav ul {
+.navegador{
     list-style-type: none;
     padding: 0;
     display: flex;
     justify-content: space-around;
-    background-color: #3f3f3f28 
+    background-color: #3f3f3f28;
+    
+}
+/* Navegación */
+nav ul {
+   
 }
 
 nav ul li {
     display: inline;
+    margin: 0px 95px;
 }
 
 nav a {
