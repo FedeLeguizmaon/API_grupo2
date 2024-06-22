@@ -7,12 +7,37 @@
   
   /* Estilos para los elementos individuales de los productos */
   .productos > div {
-    margin: 10px; /* Agrega espacio entre los elementos */
-    padding: 10px; /* Agrega relleno para separar el contenido */
-    border: 1px solid #ccc; /* Agrega una línea divisoria */
+    margin: 20px; /* Agrega espacio entre los elementos */
+    padding: 20px; /* Agrega relleno para separar el contenido */
+    
+    border-radius: 30px;
     width: 200px; /* Establece un ancho fijo para los elementos */
   }
+  
+h1.titulo{
+  font-family: 'Arial Black', sans-serif;
+  font-size: 3em;
+  font-weight: bold;
+  color: #141414dc;
+  background-color: #e6e6e6;
+  border: 2px solid #e6e6e6;
+  text-align: center;
+  margin: 20px 0; /* Espacio arriba y abajo */
+  padding: 10px; /* Espacio interno */
+}
+h1.subtitulo{
+  font-family: 'Arial Black', sans-serif;
+  font-size: 2em;
+  font-weight: bold;
+  color: #141414dc;
+  
+  text-align: center;
+  margin: 20px 0; /* Espacio arriba y abajo */
+  padding: 10px; /* Espacio interno */
+}
+
+
 
   .product {
-    background-color: #f2f2f2;
+    background-color: #f3f3f3;
   }

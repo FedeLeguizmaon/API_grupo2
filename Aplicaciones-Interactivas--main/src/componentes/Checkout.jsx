@@ -14,6 +14,7 @@ const Checkout = () => {
 
   const actualizarPrecio = (nuevoPrecio) => {
     setPrecioTotal(nuevoPrecio);
+    
   }
 
   const ElegirMetodoDePago = () => {

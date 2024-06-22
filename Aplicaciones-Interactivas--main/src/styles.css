@@ -9,7 +9,7 @@ nav ul {
     padding: 0;
     display: flex;
     justify-content: space-around;
-    background-color: #ffcc00; /* Color amarillo del wireframe */
+    background-color: #3f3f3f28 
 }
 
 nav ul li {
@@ -18,14 +18,14 @@ nav ul li {
 
 nav a {
     text-decoration: none;
-    color: rgb(163, 76, 76);
+    color: #e6e6e6(163, 76, 76);
     padding: 10px 20px;
     display: block;
 }
 
 /* Estilo de la sección de promociones */
 .promo {
-    background-color: #ffcc00; /* Color amarillo del wireframe */
+    background-color: #ff0000ab;    
     padding: 20px;
     text-align: center;
 }

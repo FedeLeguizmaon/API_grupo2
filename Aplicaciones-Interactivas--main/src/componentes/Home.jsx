@@ -18,13 +18,18 @@ const Home = () => {
       <header>
         <nav>
         </nav>
-        <h1>Bienvenido a Remeras Originals</h1>
+        <h1 className='bienvenido'>BIENVENIDOS A CAMISETAS ORIGINALS</h1>
         <div className="tarjeta-mensaje" onClick={handleVerCarrito}>
-          <h1>¡Clickea aca para Comprar tus mejores remeras en esta página!</h1>
+          <h1>¡Compra tus mejores remeras!</h1>
         </div>
       </header>
-      
-      <footer>
+      <div className="Tipo_de_Remeras">
+    <div className="card">Disfruta de las mejores camisetas de selección aquí</div>
+    <img></img>
+    <div className="card">Disfruta de las mejores camisetas de Equipos Argentinos aquí</div>
+    <div className="card">Disfruta de las mejores camisetas de Equipos Extranjeros aquí</div>
+</div>
+      <footer className='footer'>
         <p>© 2024 Tienda de Remeras. Todos los derechos reservados.</p>
       </footer>
     </main>

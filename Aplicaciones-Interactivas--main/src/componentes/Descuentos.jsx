@@ -1,6 +1,7 @@
 // Descuentos.js
 import React from 'react';
 import axios from 'axios';
+import './estilos/CheckoutStyles.css';
 
 const Descuentos = function(props) {
     let tipoD = 0;
@@ -68,10 +69,15 @@ const Descuentos = function(props) {
     return(
         <>
         <h3>Elegí tu método de pago</h3>
-        <button onClick={() => { metodoDePagoC(); handlerVerDesc(); }}>Tarjeta de crédito</button>
-        <button onClick={() => { metodoDePagoD(); handlerVerDesc(); }}>Tarjeta de débito</button>
-       
-        </>
+        <div className="pago-container">
+            <button className='boton' onClick={() => { metodoDePagoC(); handlerVerDesc(); }}>Tarjeta de crédito</button>
+            <p className='mensaje-de-descuento'>Comprando con Tarjeta de crédito tenes un 5% de descuento</p>
+        </div>
+        <div className="pago-container">
+            <button className='boton' onClick={() => { metodoDePagoD(); handlerVerDesc(); }}>Tarjeta de débito</button>
+            <p className='mensaje-de-descuento'>Comprando con Tarjeta de débito tenes un 10% de descuento</p>
+        </div>
+    </>
     )
 }
 export default Descuentos;
