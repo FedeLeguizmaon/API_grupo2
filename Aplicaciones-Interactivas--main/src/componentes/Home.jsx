@@ -1,15 +1,10 @@
-import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Catalogo from './Catalogo';
-import Carrito from './Carrito';
-import Navbar from './Navbar';
 import "./estilos/HomeStyles.css"
 
 const Home = () => {
   const navigate = useNavigate();
-  const [mostrarCatalogo, setMostrarCatalogo] = useState(true);
 
-  const handleVerCarrito = () => {
+  const handleVerCatalogo = () => {
     navigate('/Catalogo');
   };
 
@@ -19,7 +14,7 @@ const Home = () => {
         <nav>
         </nav>
         <h1 className='bienvenido'>BIENVENIDOS A CAMISETAS ORIGINALS</h1>
-        <div className="tarjeta-mensaje" onClick={handleVerCarrito}>
+        <div className="tarjeta-mensaje" onClick={handleVerCatalogo}>
           <h1>¡Compra tus mejores remeras!</h1>
         </div>
       </header>

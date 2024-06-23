@@ -7,6 +7,7 @@ import Checkout from './componentes/Checkout';
 import Descuentos from './componentes/Descuentos';
 import GestionProductos from './componentes/GestionProductos';
 import Catalogo from './componentes/Catalogo';
+import Detalle from './componentes/Detalle';
 import './styles.css';
 import { useNavigate } from 'react-router-dom';
 import { CarritoProvider } from './componentes/CarritoContext';
@@ -43,6 +44,7 @@ function App() {
             <Route path="/descuentos" element={<Descuentos />} />
             <Route path="/gestion-productos" element={<GestionProductos />} />
             <Route path="/catalogo" element={<Catalogo />} />
+            <Route path='Detalle' element={<Detalle />} />
           </Routes>
         </div>
       </Router>

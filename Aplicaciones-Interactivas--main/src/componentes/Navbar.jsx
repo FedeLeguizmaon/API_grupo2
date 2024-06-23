@@ -76,7 +76,7 @@ const Navbar = (props) => {
         </div>
         <div className="results">
           {!productosEncontrados && <p className="products-found">No se encontraron productos.</p>}
-          {searchTerm && priceFilteredProductos.length > 0 && (
+          {(searchTerm || maxPrice || minPrice) && priceFilteredProductos.length > 0 && (
             priceFilteredProductos.map(producto => (
               <article className="article">
                   <div key={producto.id}>

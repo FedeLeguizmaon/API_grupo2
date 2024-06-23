@@ -1,14 +1,14 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { CarritoContext } from './CarritoContext';
-import Checkout from './Checkout';
 import { useNavigate } from 'react-router-dom';
+
 const Carrito = () => {
   const { carrito, eliminarDelCarrito, finalizarCompra } = useContext(CarritoContext);
   const [totalPrecios, setTotalPrecios] = useState(0);
-  const [checkout, setCheckout] = useState(false);
   const[finalizar,setFinalizar]= useState(false);
   const navigate = useNavigate();
+  
   const handleFinalizarCompra = () => {
     setFinalizar(true);
         let totalPreciosTemp = carrito.reduce((total, item) => total + item.precio, 0);

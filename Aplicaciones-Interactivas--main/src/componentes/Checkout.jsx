@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Descuentos from './Descuentos';
-import { useCarrito } from './CarritoContext';
 
 const Checkout = () => {
-  const { carrito, vaciarCarrito } = useCarrito();
   const location = useLocation();
   const { totalPrecios } = location.state || { totalPrecios: 0 };
   const [mostrarDescuentos, setMostrarDescuentos] = useState(false);
@@ -14,14 +12,11 @@ const Checkout = () => {
 
   const actualizarPrecio = (nuevoPrecio) => {
     setPrecioTotal(nuevoPrecio);
-    
   }
 
   const ElegirMetodoDePago = () => {
     setMostrarDescuentos(true);
   }
-
-  
 
   return (
     <>

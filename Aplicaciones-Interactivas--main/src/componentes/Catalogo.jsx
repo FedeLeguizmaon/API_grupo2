@@ -1,14 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Detalle from './Detalle';
 import Navbar from './Navbar'; 
 import { useNavigate } from 'react-router-dom';
 import './estilos/CatalogoStyles.css';
-import { CarritoContext } from './CarritoContext';
 
 const Catalogo = () => {
   const [productos, setProductos] = useState([]);
-  const [mostrarDetalle, setMostrarDetalle] = useState(false);
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
   const navigate = useNavigate();
 
@@ -26,12 +23,9 @@ const Catalogo = () => {
 
   const abrirDetalle = (producto) => {
     setProductoSeleccionado(producto);
-    setMostrarDetalle(true);
+    navigate('/Detalle', { state: { producto } });
   };
-
-  const cerrarDetalle = () => {
-    setMostrarDetalle(false);
-  };
+  
 
   return (
     <div>
@@ -48,12 +42,6 @@ const Catalogo = () => {
           </div>
         ))}
       </div>
-      {mostrarDetalle && (
-        <Detalle
-          producto={productoSeleccionado}
-          cerrarDetalle={cerrarDetalle}
-        />
-      )}
     </div>
   );
 };
