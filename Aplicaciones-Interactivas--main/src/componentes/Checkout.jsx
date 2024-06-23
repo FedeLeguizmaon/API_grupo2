@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Descuentos from './Descuentos';
 
@@ -17,7 +17,15 @@ const Checkout = () => {
   const ElegirMetodoDePago = () => {
     setMostrarDescuentos(true);
   }
+  useEffect(() => {
+    if (!mostrarMetodo) {
+      const timer = setTimeout(() => {
+        navigate('/');
+      }, 30000); 
 
+      return () => clearTimeout(timer); 
+    }
+  }, [mostrarMetodo, navigate]);
   return (
     <>
       {!mostrarMetodo && (

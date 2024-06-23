@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { CarritoProvider } from './componentes/CarritoContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShirt } from '@fortawesome/free-solid-svg-icons';
+import{faCartShopping} from '@fortawesome/free-solid-svg-icons';
 function Header() {
   const navigate = useNavigate();
   return (
@@ -23,13 +24,16 @@ function Header() {
           <li><FontAwesomeIcon icon={faShirt} onClick={() => navigate('/')}  /></li> 
           <li><button onClick={() => navigate('/catalogo')}>Catálogo de Productos</button></li>
           <li><button onClick={() => navigate('/gestion-productos')}>Gestión de Productos</button></li>
-          <li><button onClick={() => navigate('/Carrito')}>Carrito</button></li>
+          <li><FontAwesomeIcon icon={faCartShopping}  onClick={() => navigate('/Carrito')}  /></li> 
         
         </ul>
       </nav>
+     
     </header>
+    
   );
 }
+
 
 function App() {
   return (
@@ -49,6 +53,7 @@ function App() {
         </div>
       </Router>
     </CarritoProvider>
+    
   );
 }
 

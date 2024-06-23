@@ -21,9 +21,7 @@ nav ul li {
   transition: color 0.3s;
 }
 
-nav ul li:hover {
-  color: #ff0000dc; /* Cambiar el color al pasar el mouse */
-}
+
 
 /* Estilos para el contenido principal */
 main {
@@ -50,9 +48,7 @@ nav ul li {
   transition: color 0.3s;
 }
 
-nav ul li:hover {
-  color: #ff0000; /* Cambiar el color al pasar el mouse */
-}
+
 
 /* Estilos para la tarjeta del mensaje */
 .tarjeta-mensaje {

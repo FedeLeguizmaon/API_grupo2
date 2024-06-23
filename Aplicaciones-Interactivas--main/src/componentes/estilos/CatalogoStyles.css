@@ -13,7 +13,11 @@
     border-radius: 30px;
     width: 200px; /* Establece un ancho fijo para los elementos */
   }
-  
+  .productos > div:hover {
+
+    opacity: 0.2; 
+    cursor: pointer; 
+  }
 h1.titulo{
   font-family: 'Arial Black', sans-serif;
   font-size: 3em;

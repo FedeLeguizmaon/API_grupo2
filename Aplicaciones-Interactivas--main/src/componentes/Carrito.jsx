@@ -18,7 +18,10 @@ const Carrito = () => {
         finalizarCompra()
       };
   
+      const handlerDescubrir = () =>{
+        navigate('/Catalogo')
 
+      }
   const saveCarrito = async () => {
     try {
       const response = await axios.post('http://localhost:3001/compras', {
@@ -32,20 +35,34 @@ const Carrito = () => {
 
   return (
     <div>
-      <h2>Carrito de compras</h2>
-      <ul>
+      <h1 className='titulo'>Carrito de compras</h1>
+      
         {!finalizar && carrito && carrito.length > 0 ? (
-          carrito.map((item, index) => (
-            <li key={index}>
-              {item.producto} - {item.precio}
-              <button onClick={() => eliminarDelCarrito(item.producto, item.precio)}>Eliminar</button>
-              <button onClick={handleFinalizarCompra}>Finalizar compra</button>
-            </li>
-          ))
-        ) : (
-          <li>No hay elementos en el carrito</li>
+           <div>
+           <ul>
+             {carrito.map((item, index) => (
+               <li key={index}>
+                 {item.producto} - {item.precio}
+                 <button onClick={() => eliminarDelCarrito(item.producto, item.precio)}>Eliminar</button>
+               </li>
+             ))}
+           </ul>
+           <button onClick={handlerDescubrir}>Seguir Comprando</button>
+           <button onClick={handleFinalizarCompra}>Finalizar compra</button>
+           
+         </div>
+          ) 
+           
+        : (
+         <div>
+         <div>
+         <h1>¡Todavia no has añadido elementos a tu carrito! </h1>
+         <button className="catalogoCarrito" onClick={handlerDescubrir}>Descubrir productos</button>
+         
+       </div></div> 
+          
         )}
-      </ul>
+      
       
     </div>
   );

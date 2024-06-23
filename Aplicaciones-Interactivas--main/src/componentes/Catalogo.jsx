@@ -31,17 +31,20 @@ const Catalogo = () => {
     <div>
       <h1 className='titulo' >Camisetas Originals</h1> 
       <Navbar />
-      <h1 className='subtitulo'>Catálogo de Productos</h1>
+      <h1 className='subtitulo'>Catalogo de productos</h1>
       <div className='productos'>
         {productos.map(producto => (
-          <div key={producto.id} className='product'>
+          <div onClick={() => abrirDetalle(producto)} key={producto.id} className='product'>
             <h3>{producto.Name}</h3>
             <p>Precio: ${producto.Precio}</p>
             <img src={producto.Imagen} alt={producto.Name} style={{ width: '150px' }} />
-            <button onClick={() => abrirDetalle(producto)}>Abrir detalle</button>
+            
           </div>
         ))}
       </div>
+      <footer className='footer'>
+  <p>© 2024 Tienda de Remeras. Todos los derechos reservados.</p>
+</footer>
     </div>
   );
 };

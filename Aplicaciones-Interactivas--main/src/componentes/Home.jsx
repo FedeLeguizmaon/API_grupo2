@@ -30,9 +30,9 @@ const Home = () => {
     <img className="imagenes" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdeVAOBgZ3cllBRmIG1-7aQfvDqGcaWjqY1A&s" alt=""></img>
     </div>
 </div>
-      <footer className='footer'>
-        <p>© 2024 Tienda de Remeras. Todos los derechos reservados.</p>
-      </footer>
+<footer className='footer'>
+  <p>© 2024 Tienda de Remeras. Todos los derechos reservados.</p>
+</footer>
     </main>
   );
 };

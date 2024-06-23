@@ -133,7 +133,7 @@ function GestionProductos() {
 
   return (
     <div>
-      <h1>Gestión de Productos</h1>
+      <h1 className="titulo">Gestión de Productos</h1>
       <button onClick={() => setMode('add')}>Agregar Producto</button>
       <button onClick={() => setMode('modify')}>Modificar Producto</button>
       <button onClick={() => setMode('delete')}>Eliminar Producto</button>

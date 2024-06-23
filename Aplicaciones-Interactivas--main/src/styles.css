@@ -8,7 +8,11 @@ body {
     display: flex;
     justify-content: space-around;
     background-color: #3f3f3f28;
+    cursor: pointer; 
     
+}
+.navegador:hover{
+    color: #0069D9
 }
 /* Navegación */
 nav ul {
@@ -25,6 +29,9 @@ nav a {
     color: #e6e6e6(163, 76, 76);
     padding: 10px 20px;
     display: block;
+}
+.nav:hover{
+    color: #0069D9  
 }
 
 /* Estilo de la sección de promociones */
