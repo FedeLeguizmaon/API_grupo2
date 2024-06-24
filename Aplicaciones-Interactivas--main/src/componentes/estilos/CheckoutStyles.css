@@ -17,7 +17,14 @@
     border: none;
     border-radius: 5px;
 }
+.basura{
+     margin-left: 10px ;
+     cursor: pointer;
+}
+.basura:hover{
+    color: #0069D9
 
+}
 .pago-container {
     text-align: center;
     margin-bottom: 20px;

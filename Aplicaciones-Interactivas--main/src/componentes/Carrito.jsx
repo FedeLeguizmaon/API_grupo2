@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { CarritoContext } from './CarritoContext';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const Carrito = () => {
   const { carrito, eliminarDelCarrito, finalizarCompra } = useContext(CarritoContext);
@@ -41,9 +43,12 @@ const Carrito = () => {
            <div>
            <ul>
              {carrito.map((item, index) => (
+              
                <li key={index}>
+                <br></br>
                  {item.producto} - {item.precio}
-                 <button onClick={() => eliminarDelCarrito(item.producto, item.precio)}>Eliminar</button>
+                 <FontAwesomeIcon className="basura"icon={faTrash} onClick={() => eliminarDelCarrito(item.producto, item.precio)}/>
+                  
                </li>
              ))}
            </ul>
