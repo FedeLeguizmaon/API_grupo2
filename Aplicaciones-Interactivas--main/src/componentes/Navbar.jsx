@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './estilos/NavbarStyles.css'
-import Detalle from "./Detalle";
+import { useNavigate } from "react-router-dom";
 
-const Navbar = (props) => {
+const Navbar = () => {
     const [productos, setProductos] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [minPrice, setMinPrice] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
     const [productosEncontrados, setProductosEncontrados] = useState(true);
-    const [mostrarDetalle, setMostrarDetalle] = useState(false);
-    const [productoSeleccionado, setProductoSeleccionado] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
       const fetchProductos = async () => {
@@ -44,9 +43,6 @@ const Navbar = (props) => {
       }
     }, [searchTerm, priceFilteredProductos]);
 
-    const cerrarDetalle = () => {
-      setMostrarDetalle(false);
-    };
 
     return (
         <div className="navbar-container">
@@ -84,13 +80,12 @@ const Navbar = (props) => {
                     <p>Precio: ${producto.Precio}</p>
                     <img src={producto.Imagen} alt={producto.Name} style={{ width: '100px' }} />
                     <br />
-                    <button onClick={() => { setMostrarDetalle(true); setProductoSeleccionado(producto) }}>Abrir detalle</button>
+                    <button onClick={() => { navigate('/Detalle', {state: {producto}}) }}>Abrir detalle</button>
                   </div>
               </article>
               ))
             )}
             </div>
-            {mostrarDetalle && <Detalle producto={productoSeleccionado} cerrarDetalle={cerrarDetalle} props={props}/>}
         </div>
     );
 }

@@ -58,3 +58,22 @@
 .BotonCarrito:hover{
     color: #0069D9
 }
+
+.mensaje-agregado {
+    position: fixed;
+    top: 5%;
+    left: 77.5%;
+    transform: translateX(-50%);
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+  }
+  
+.mensaje-agregado.oculto {
+    opacity: 0;
+}
+  
+  
