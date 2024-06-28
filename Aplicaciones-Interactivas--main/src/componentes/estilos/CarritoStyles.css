@@ -1,0 +1,21 @@
+.button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: 'pointer';
+    color: black;
+  }
+  
+  .button-descubrir {
+    background-color: lightgray;
+  }
+  
+  .button-finalizar {
+    background-color: lightgray;
+  }
+  
+  .button-vaciar {
+    background-color: lightgray;
+  }
+  

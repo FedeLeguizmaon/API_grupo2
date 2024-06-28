@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
+import './estilos/CarritoStyles.css';
 import { CarritoContext } from './CarritoContext';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -52,9 +53,9 @@ const Carrito = () => {
                </li>
              ))}
            </ul>
-           <button onClick={handlerDescubrir}>Seguir Comprando</button>
-           <button onClick={handleFinalizarCompra}>Finalizar compra</button>
-           
+           <button onClick={handlerDescubrir} className="button button-descubrir">Seguir Comprando</button>
+           <button onClick={handleFinalizarCompra} className="button button-finalizar"> Finalizar compra</button>
+           <button onClick={() => { finalizarCompra() }} className="button button-vaciar">Vaciar carrito</button>
          </div>
           ) 
            
