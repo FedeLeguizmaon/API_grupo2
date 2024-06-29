@@ -10,6 +10,8 @@ export const CarritoProvider = ({ children }) => {
     setCarrito([...carrito, { producto, precio }]);
   };
 
+  const Contador = carrito.length;
+
   const eliminarDelCarrito = (productoAEliminar, precio) => {
     const index = carrito.findIndex(item => item.producto === productoAEliminar && item.precio === precio);
     if (index !== -1) {
@@ -24,7 +26,7 @@ export const CarritoProvider = ({ children }) => {
   };
   
   return (
-    <CarritoContext.Provider value={{ carrito, agregarAlCarrito, eliminarDelCarrito, finalizarCompra }}>
+    <CarritoContext.Provider value={{ carrito, Contador,agregarAlCarrito, eliminarDelCarrito, finalizarCompra }}>
       {children}
     </CarritoContext.Provider>
   );

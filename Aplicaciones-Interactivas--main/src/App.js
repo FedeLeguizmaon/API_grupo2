@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useContext} from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import Carrito from './componentes/Carrito';
@@ -8,6 +8,7 @@ import Descuentos from './componentes/Descuentos';
 import GestionProductos from './componentes/GestionProductos';
 import Catalogo from './componentes/Catalogo';
 import Detalle from './componentes/Detalle';
+import { CarritoContext } from './componentes/CarritoContext';
 import './styles.css';
 import { useNavigate } from 'react-router-dom';
 import { CarritoProvider } from './componentes/CarritoContext';
@@ -16,6 +17,7 @@ import { faShirt } from '@fortawesome/free-solid-svg-icons';
 import{faCartShopping} from '@fortawesome/free-solid-svg-icons';
 function Header() {
   const navigate = useNavigate();
+  const { Contador } = useContext(CarritoContext);
   return (
     <header>
       <nav className='navegador'>
@@ -25,7 +27,11 @@ function Header() {
           <li><button onClick={() => navigate('/catalogo')}>Catálogo de Productos</button></li>
           <li><button onClick={() => navigate('/gestion-productos')}>Gestión de Productos</button></li>
           <li><FontAwesomeIcon icon={faCartShopping}  onClick={() => navigate('/Carrito')}  /></li> 
-        
+          {Contador > 0 ? (
+            <li className="CantElementosCarrito">{Contador}</li>
+          ) : (
+            <li></li>
+          )}
         </ul>
       </nav>
      

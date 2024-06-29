@@ -14,14 +14,12 @@ body {
 .navegador:hover{
     color: #0069D9
 }
-/* Navegación */
-nav ul {
-   
-}
+
 
 nav ul li {
     display: inline;
     margin: 0px 95px;
+    position: relative;
 }
 
 nav a {
@@ -33,7 +31,19 @@ nav a {
 .nav:hover{
     color: #0069D9  
 }
-
+.CantElementosCarrito{
+    position: absolute;
+    top: 20px;
+    transform: translateX(-50%);
+    background-color: red;
+    border-radius: 70%;
+    left: 75%;
+    font-size: small;
+    padding: 2.5px ;
+}   
+.CantElementosCarrito:hover{
+    color:transparent;
+}
 /* Estilo de la sección de promociones */
 .promo {
     background-color: #ff0000ab;    

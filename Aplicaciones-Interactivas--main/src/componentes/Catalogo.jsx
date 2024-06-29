@@ -6,7 +6,6 @@ import './estilos/CatalogoStyles.css';
 
 const Catalogo = () => {
   const [productos, setProductos] = useState([]);
-  const [productoSeleccionado, setProductoSeleccionado] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,7 +21,6 @@ const Catalogo = () => {
   }, []);
 
   const abrirDetalle = (producto) => {
-    setProductoSeleccionado(producto);
     navigate('/Detalle', { state: { producto } });
   };
   
