@@ -20,6 +20,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShirt } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import{faCartShopping} from '@fortawesome/free-solid-svg-icons';
+import { Provider } from 'react-redux';
+import { store } from './componentes/Redux/Store';
 
 function Header() {
   const navigate = useNavigate();
@@ -57,26 +59,27 @@ function Header() {
 
 function App() {
   return (
-    <CarritoProvider>
-      <Router>
-        <div className="App">
-          <Header />
-          <Routes>
-            <Route path='/Registro' element={<Registro />} />
-            <Route path='/LogIn' element={<LogIn />} />
-            <Route path='/Opciones' element={<OpcionesLog />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/carrito" element={<Carrito />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/descuentos" element={<Descuentos />} />
-            <Route path="/gestion-productos" element={<GestionProductos />} />
-            <Route path="/catalogo" element={<Catalogo />} />
-            <Route path='Detalle' element={<Detalle />} />
-          </Routes>
-        </div>
-      </Router>
-    </CarritoProvider>
-    
+    <Provider store={store}>
+      <CarritoProvider>
+        <Router>
+          <div className="App">
+            <Header />
+            <Routes>
+              <Route path='/Registro' element={<Registro />} />
+              <Route path='/LogIn' element={<LogIn />} />
+              <Route path='/Opciones' element={<OpcionesLog />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/carrito" element={<Carrito />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/descuentos" element={<Descuentos />} />
+              <Route path="/gestion-productos" element={<GestionProductos />} />
+              <Route path="/catalogo" element={<Catalogo />} />
+              <Route path='Detalle' element={<Detalle />} />
+            </Routes>
+          </div>
+        </Router>
+      </CarritoProvider>
+    </Provider>
   );
 }
 

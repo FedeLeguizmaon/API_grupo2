@@ -10,7 +10,7 @@ const Detalle = () => {
   const { agregarAlCarrito } = useContext(CarritoContext);
   const [mensajeVisible, setMensajeVisible] = useState(false);
   const [mensajeOculto, setMensajeOculto] = useState(false);
-
+ 
   const handleAgregarAlCarrito = (nombre, precio) => {
     agregarAlCarrito(nombre, precio);
     setMensajeVisible(true);
@@ -38,9 +38,10 @@ const Detalle = () => {
         <button className="BotonAtras" onClick={() => navigate('/Catalogo')}>Atras</button>
         <button className="BotonCarrito" onClick={() => navigate('/Carrito')}>Ir al carrito</button>
         {mensajeVisible && <div className={`mensaje-agregado ${mensajeOculto ? 'oculto' : ''}`}>Producto agregado!</div>}
+        
       </div>
     </div>
   );
-};
+}
 
 export default Detalle;
