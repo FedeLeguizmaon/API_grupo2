@@ -11,6 +11,7 @@ import GestionProductos from './componentes/GestionProductos';
 import Catalogo from './componentes/Catalogo';
 import Detalle from './componentes/Detalle';
 import Registro from './componentes/Registro';
+
 import { CarritoContext } from './componentes/CarritoContext';
 import './styles.css';
 
@@ -22,6 +23,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import{faCartShopping} from '@fortawesome/free-solid-svg-icons';
 import { Provider } from 'react-redux';
 import { store } from './componentes/Redux/Store';
+import MensajeDeRegistro from './componentes/MensajeDeRegistro';
 
 function Header() {
   const navigate = useNavigate();
@@ -75,6 +77,7 @@ function App() {
               <Route path="/gestion-productos" element={<GestionProductos />} />
               <Route path="/catalogo" element={<Catalogo />} />
               <Route path='Detalle' element={<Detalle />} />
+              <Route path='/MensajeRegistro' element={<MensajeDeRegistro/>}/>
             </Routes>
           </div>
         </Router>

@@ -1,33 +1,46 @@
 import React, { useContext, useState,useEffect } from "react";
 import   './estilos/LogStyles.css';
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { addUser } from "./Redux/UserSlice";
+import MensajeDeRegistro from "./MensajeDeRegistro";
 const Registro = () =>{
+    const [mensaje,setMensaje] = useState(false)
     const  dispatch = useDispatch();
-    useEffect(() =>{
-        fetch("https://jsonplaceholder.typicode.com/users")
-        .then((response) => response.json())
-        .then((data) => dispatch(addUser({ Mail: data[0].email, Contraseña: 'defaultPassword' })))
-        .catch((error) =>console.log(error));
-    },[dispatch]);      
+    const [role, setRol] = useState("");
+    const [firstname, setNombre] = useState("");
+    const [lastname, setapellido] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+   
     const handlerRegistro = (e) => {
         e.preventDefault();
-        fetch("http://localhost:4000/api/register", {
+        
+        fetch("http://localhost:4002/api/v1/auth/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ email, password,firstname,lastname,role }),
+            
         })
-            .then((response) => response.json())
+        
+            .then((response) => 
+                
+                response.json()
+        )
             .then((data) => {
-                if (data.success) {
-                    dispatch(addUser({ Mail: email, Contraseña: password }));
-                } else {
+
+                console.log("Server response:", data);
+                
+                if (data.message) {
+                    setMensaje(data.message);
                     console.log("Error registering user: ", data.message);
+                } else {
+                    console.log("hasta aca ok");
+                    dispatch(addUser({ Mail: email, Contraseña: password, Nombre: firstname, Apellido: lastname, Rol: role }));
                 }
+            
+                
             })
             .catch((error) => console.log("Error:", error));
     };
@@ -55,7 +68,36 @@ const Registro = () =>{
                             onChange={(e) => setPassword(e.target.value)}
                         />
             </div>
-            <button className="BotonDeInicio" type="submit">Registrarse</button>
+           
+            <div className="Input">
+            <label className="etiqueta">nombre</label>
+            <input
+                            type="nombre"
+                            placeholder="Ingrese su nombre"
+                            value={firstname}
+                            onChange={(e) => setNombre(e.target.value)}
+                        />
+            </div>
+            <div className="Input">
+            <label className="etiqueta">apellido</label>
+            <input
+                            type="apellido"
+                            placeholder="Ingrese su apellido"
+                            value={lastname}
+                            onChange={(e) => setapellido(e.target.value)}
+                        />
+            </div>
+            <div className="Input">
+            <label className="etiqueta">rol</label>
+            <input
+                            type="rol"
+                            placeholder="Ingrese su rol"
+                            value={role}
+                            onChange={(e) => setRol(e.target.value)}
+                        />
+            </div>
+            <button  onClick= {handlerRegistro} className="BotonDeInicio" type="submit">Registrarse</button>
+            {mensaje && <MensajeDeRegistro props={mensaje} />}
         </div>
         <footer className='footer'>
             <p>© 2024 Tienda de Remeras. Todos los derechos reservados.</p>
@@ -63,5 +105,6 @@ const Registro = () =>{
         </>
        
     )
+    
 }
 export default Registro;
