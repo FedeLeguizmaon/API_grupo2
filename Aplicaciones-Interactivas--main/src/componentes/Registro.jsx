@@ -2,15 +2,17 @@ import React, { useContext, useState,useEffect } from "react";
 import   './estilos/LogStyles.css';
 import { useDispatch,useSelector } from "react-redux";
 import { addUser } from "./Redux/UserSlice";
-import MensajeDeRegistro from "./MensajeDeRegistro";
+import MensajeDeRegistro from "./mensajes/MensajeDeRegistro";
 const Registro = () =>{
-    const [mensaje,setMensaje] = useState(false)
+    const [mensaje,setMensaje] = useState("")
+    const [registroExitoso, setRegistroExitoso] = useState(false);
     const  dispatch = useDispatch();
     const [role, setRol] = useState("");
     const [firstname, setNombre] = useState("");
     const [lastname, setapellido] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [Token,setToken] = useState("");
    
     const handlerRegistro = (e) => {
         e.preventDefault();
@@ -34,10 +36,14 @@ const Registro = () =>{
                 
                 if (data.message) {
                     setMensaje(data.message);
+                    setRegistroExitoso(false);
                     console.log("Error registering user: ", data.message);
                 } else {
+                    console.log(data)
+                    const token = data.access_token;
                     console.log("hasta aca ok");
-                    dispatch(addUser({ Mail: email, Contraseña: password, Nombre: firstname, Apellido: lastname, Rol: role }));
+                    setRegistroExitoso(true);
+                    dispatch(addUser({ Mail: email, Contraseña: password, Nombre: firstname, Apellido: lastname, Rol: role,Token:token }));
                 }
             
                 
@@ -97,7 +103,8 @@ const Registro = () =>{
                         />
             </div>
             <button  onClick= {handlerRegistro} className="BotonDeInicio" type="submit">Registrarse</button>
-            {mensaje && <MensajeDeRegistro props={mensaje} />}
+            {mensaje && <MensajeDeRegistro  />}
+            {registroExitoso && <h1>Usuario registrado correctamente</h1>}
         </div>
         <footer className='footer'>
             <p>© 2024 Tienda de Remeras. Todos los derechos reservados.</p>

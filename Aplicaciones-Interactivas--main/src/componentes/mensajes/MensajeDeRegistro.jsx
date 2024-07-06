@@ -1,11 +1,11 @@
 import React from "react";
 
 
-const MensajeDeRegistro =(props) =>{
+const MensajeDeRegistro =() =>{
     
     return(
         <>
-        <h1>{JSON.stringify(props)}</h1>
+        <h1>El usuario que intenta agregar ya existe</h1>
         </>
     )
 }

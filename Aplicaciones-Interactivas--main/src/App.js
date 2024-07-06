@@ -11,10 +11,10 @@ import GestionProductos from './componentes/GestionProductos';
 import Catalogo from './componentes/Catalogo';
 import Detalle from './componentes/Detalle';
 import Registro from './componentes/Registro';
-
+import LogOut from './componentes/LogOut';
 import { CarritoContext } from './componentes/CarritoContext';
 import './styles.css';
-
+import MensajeDeErrorOut from './componentes/mensajes/MensajeDeErrorOut';
 import { useNavigate } from 'react-router-dom';
 import { CarritoProvider } from './componentes/CarritoContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,7 +23,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import{faCartShopping} from '@fortawesome/free-solid-svg-icons';
 import { Provider } from 'react-redux';
 import { store } from './componentes/Redux/Store';
-import MensajeDeRegistro from './componentes/MensajeDeRegistro';
+import MensajeDeRegistro from './componentes/mensajes/MensajeDeRegistro';
 
 function Header() {
   const navigate = useNavigate();
@@ -78,6 +78,8 @@ function App() {
               <Route path="/catalogo" element={<Catalogo />} />
               <Route path='Detalle' element={<Detalle />} />
               <Route path='/MensajeRegistro' element={<MensajeDeRegistro/>}/>
+              <Route path='/LogOut' element={<LogOut/>}/>
+              
             </Routes>
           </div>
         </Router>
