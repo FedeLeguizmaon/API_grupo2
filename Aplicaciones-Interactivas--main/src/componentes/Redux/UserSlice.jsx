@@ -25,6 +25,9 @@ export const userSlice = createSlice({
         changeMail: (state, action) => {
             state.Mail = action.payload;
         },
+        changeContra: (state, action) => {
+            state.Contraseña = action.payload;
+        },
         logoutUser: (state) => {
             return initialState;
         },
@@ -38,5 +41,5 @@ export const userSlice = createSlice({
     },
 });
 
-export const { addUser, changeMail,logoutUser,loginUser} = userSlice.actions;
+export const { addUser, changeMail,logoutUser,loginUser,changeContra} = userSlice.actions;
 export default userSlice.reducer;

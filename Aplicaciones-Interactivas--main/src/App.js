@@ -24,7 +24,11 @@ import{faCartShopping} from '@fortawesome/free-solid-svg-icons';
 import { Provider } from 'react-redux';
 import { store } from './componentes/Redux/Store';
 import MensajeDeRegistro from './componentes/mensajes/MensajeDeRegistro';
-
+import MasOpciones from './componentes/MasOpciones';
+import FormularioCambiarCorreo from './componentes/FormularioCambiarCorreo'
+import FormularioCambiarContraseña from './componentes/FormularioCambiarContraseña';
+import{faArrowLeft} from '@fortawesome/free-solid-svg-icons';
+import HistorialDePedidos from './componentes/HistorialDePedidos';
 function Header() {
   const navigate = useNavigate();
   const { Contador } = useContext(CarritoContext);
@@ -32,7 +36,12 @@ function Header() {
 
   const handlerMostrarOpciones = () =>{
     SetMostrarOpciones(!mostarOpciones);
+    
+
   };
+  const handlerAtras=()=>{
+    navigate(-1)
+}
   return (
     <header>
       <nav className='navegador'>
@@ -43,13 +52,14 @@ function Header() {
           <li><button onClick={() => navigate('/gestion-productos')}>Gestión de Productos</button></li>
           <li><FontAwesomeIcon icon={faCartShopping}  onClick={() => navigate('/Carrito')}  /></li> 
           <li><FontAwesomeIcon icon={faUser} onClick= {handlerMostrarOpciones} /></li>
+          <li ><FontAwesomeIcon icon={faArrowLeft} onClick={handlerAtras} /></li>
           {mostarOpciones && <OpcionesLog />}
           {Contador > 0 ? (
             <li className="CantElementosCarrito">{Contador}</li>
           ) : (
             <li></li>
           )}
-          
+           
         </ul>
       </nav>
      
@@ -67,6 +77,10 @@ function App() {
           <div className="App">
             <Header />
             <Routes>
+              <Route path='/historial' element={<HistorialDePedidos/>}/>
+              <Route  path='/formCor' element={<FormularioCambiarCorreo/>}/>
+              <Route  path='/formCon' element={<FormularioCambiarContraseña/>}/>
+              <Route path='/MasOpciones' element={<MasOpciones/>}/>
               <Route path='/Registro' element={<Registro />} />
               <Route path='/LogIn' element={<LogIn />} />
               <Route path='/Opciones' element={<OpcionesLog />} />

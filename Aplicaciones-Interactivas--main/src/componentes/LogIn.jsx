@@ -1,13 +1,21 @@
 import React, { useContext, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch ,useSelector} from "react-redux";
 import { loginUser } from './Redux/UserSlice';
 import MensajeDeInicio from "./mensajes/MensajeDeInicio";
+import MensajeDeContaInc from "./mensajes/MensajeDeContaInc";
+import MensajeDeErrorIn from "./mensajes/MensajeDeErrorIn";
 const LogIn = () => {
+    const HandlerReturn=()=>{
+        navigate("/")
+    }
 const navigate = useNavigate();
 const handlerRegistro = () =>{
     navigate('/Registro')
 }
+const [boton,setBoton] = useState(true)
+const user = useSelector(state => state.user);
+const[credError,setCredError]=useState(false)
 const [inicio,setInicio]= useState(false)
 const dispatch=useDispatch();
 const[email,setEmail] = useState("");
@@ -16,7 +24,7 @@ const handleLogin = async (e) => {
     e.preventDefault();
     
     try {
-        const response = await fetch("http://localhost:4002/api/v1/auth/login", {
+        const response = await fetch("http://localhost:4002/api/v1/auth/authenticate", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -26,15 +34,20 @@ const handleLogin = async (e) => {
         
         const data = await response.json();
         console.log(response)
-        if (response.ok) {
+        
+         if (response.ok) {
             console.log("funco")
             const { access_token } = data;
+            console.log(data)
             dispatch(loginUser({ Mail: email, Contraseña: password, Token: access_token }));
             setInicio(true)
+            setCredError(false)
+            setBoton(false)
         } else {
             console.log(" no funco")
             console.error("Error logging in:", data.message);
-            <h1>Usuario no existe/contraseña incorrecta</h1>
+            setCredError(true);
+            setInicio(false)
         }
     } catch (error) {
         console.error("Error:", error);
@@ -46,7 +59,7 @@ const handleLogin = async (e) => {
     return(
         <> 
         <h1 className='titulo' >Camisetas Originals</h1> 
-        <div className="Input">
+        {boton && <div className="Input">
                 <label className="etiqueta">Correo Electronico:</label>
                 <input
                             type="email"
@@ -55,8 +68,8 @@ const handleLogin = async (e) => {
                             onChange={(e) => setEmail(e.target.value)}
                         />
             
-            </div>
-            <div className="Input">
+            </div>}
+           {boton && <div className="Input">
                 <label className="etiqueta">Contraseña</label>
                 <input
                             type="password"
@@ -64,11 +77,14 @@ const handleLogin = async (e) => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
-            </div>
-            <button className="BotonDeRegistro" onClick={handlerRegistro} title="Si no tiene cuenta creada, registrese" >Registrarse</button>
-            <button className="BotonDeInicio"  type="submit" onClick={handleLogin}>Iniciar sesion</button>
-    
+            </div>}
+            {boton && <button className="BotonDeRegistro" onClick={handlerRegistro} title="Si no tiene cuenta creada, registrese" >Registrarse</button>}
+            {boton && <button className="BotonDeInicio"  type="submit" onClick={handleLogin}>Iniciar sesion</button>}
+            
     { inicio && <MensajeDeInicio/>}
+    {credError&&<MensajeDeContaInc/>}
+    {!boton && <button onClick ={HandlerReturn}>Regresar al inicio</button>}
+    
     
     <footer className='footer'>
             <p>© 2024 Tienda de Remeras. Todos los derechos reservados.</p>

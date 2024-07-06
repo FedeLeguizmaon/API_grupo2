@@ -20,6 +20,7 @@
     background-color : rgb(170, 170, 170);
     
 }
+
 .Opcion:last-child {
     border-bottom: none; 
   }
@@ -85,3 +86,29 @@
   button:hover {
     background-color: #45a049;
 }
+.SubOpciones {
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: rgb(170, 170, 170);
+  position: absolute;
+  left: 100%;
+  top: 0;
+}
+
+.SubOpciones .Opcion {
+  white-space: nowrap; /* Para evitar que el texto se envuelva */
+}
+.MensajesOp{
+  font-size: small;
+  position: absolute;
+  left: 80%;
+  margin-top: 80px;
+  background-color: white;
+  cursor : default;
+  
+}
+
+  
+    
