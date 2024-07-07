@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Navbar from './Navbar'; 
 import { useNavigate } from 'react-router-dom';
 import './estilos/CatalogoStyles.css';
@@ -9,15 +8,18 @@ const Catalogo = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchProductos = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/products');
-        setProductos(response.data);
-      } catch (error) {
-        console.error('Error al obtener productos:', error);
-      }
-    };
-    fetchProductos();
+    fetch("http://localhost:4002/productos", {
+      method: "GET",
+      
+    }).then((response) => response.json()).then((data) => {
+      if (data.message) {
+        console.log("Error GET products: ", data.message);
+    } else {
+        console.log(data)
+        console.log("hasta aca ok");
+        setProductos(data);
+    }
+    }).catch((error) => console.log("ERROR:", error))
   }, []);
 
   const abrirDetalle = (producto) => {
