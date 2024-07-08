@@ -1,17 +1,18 @@
 import React,{ useContext,useState} from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import './App.css'; 
+import Registro from './componentes/Registro';
 import OpcionesLog from './componentes/OpcionesLog';
-import LogIn from './componentes/LogIn';
 import Carrito from './componentes/Carrito';
 import Home from './componentes/Home';
 import Checkout from './componentes/Checkout';
 import Descuentos from './componentes/Descuentos';
 import GestionProductos from './componentes/GestionProductos';
+import LogIn from './componentes/LogIn';
 import Catalogo from './componentes/Catalogo';
 import Detalle from './componentes/Detalle';
-import Registro from './componentes/Registro';
 import LogOut from './componentes/LogOut';
+import MensajeDeErrorIn from './componentes/mensajes/MensajeDeErrorIn';
 import { CarritoContext } from './componentes/CarritoContext';
 import './styles.css';
 import MensajeDeErrorOut from './componentes/mensajes/MensajeDeErrorOut';
@@ -25,9 +26,10 @@ import { Provider } from 'react-redux';
 import { store } from './componentes/Redux/Store';
 import MensajeDeRegistro from './componentes/mensajes/MensajeDeRegistro';
 import MasOpciones from './componentes/MasOpciones';
-import FormularioCambiarCorreo from './componentes/FormularioCambiarCorreo'
-import FormularioCambiarContraseña from './componentes/FormularioCambiarContraseña';
 import{faArrowLeft} from '@fortawesome/free-solid-svg-icons';
+import FormularioAgregarProducto from './componentes/FormularioAgregarProducto';
+import FormularioCambiarCorreo from './componentes/FormularioCambiarCorreo';
+import FormularioCambiarContraseña from './componentes/FormularioCambiarContraseña';
 import HistorialDePedidos from './componentes/HistorialDePedidos';
 function Header() {
   const navigate = useNavigate();

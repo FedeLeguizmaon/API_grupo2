@@ -10,6 +10,7 @@ import FormularioCambiar from "./FormularioCambiarContraseña";
 import EligeQueCambia from "./EligeQueCambia";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import{faArrowLeft} from '@fortawesome/free-solid-svg-icons';
+import FormularioCambiarContraseña from "./FormularioCambiarContraseña";
 const MasOpciones =()=>{
     const navigate = useNavigate()
     const[email,setEmail] = useState("");

@@ -3,11 +3,12 @@ import   './estilos/LogStyles.css';
 import LogIn from './LogIn';
 import { useNavigate } from 'react-router-dom';
 import { logoutUser } from "./Redux/UserSlice";
-import MensajeDeErrorOut from './mensajes/MensajeDeErrorOut';
+
 import { useDispatch, useSelector } from "react-redux";
 import MensajeDeErrorIn from './mensajes/MensajeDeErrorIn';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import MensajeDeErrorOut from './mensajes/MensajeDeErrorOut';
 const OpcionesLog = () =>{
     const [verMas, setVerMas] = useState(false);
     const [error,setError] = useState(false)

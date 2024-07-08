@@ -10,6 +10,10 @@ const Catalogo = () => {
   useEffect(() => {
     fetch("http://localhost:4002/productos", {
       method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        
+    },
       
     }).then((response) => response.json()).then((data) => {
       if (data.message) {

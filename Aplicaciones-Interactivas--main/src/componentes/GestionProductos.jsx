@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import FormularioAgregarProducto from "./FormularioAgregarProducto";
+import FormularioModificarProducto from './FormularioModificarProducto';
+import { useNavigate } from 'react-router-dom';
+import FormularioBuscarProducto from './FormularioBuscarProducto';
 /*
 function AgregarProducto({ onAdd }) {
     const [producto, setProducto] = useState({
@@ -49,7 +52,7 @@ function AgregarProducto({ onAdd }) {
     );
 }*/
 
-function ModificarProducto({ onUpdate }) {
+/*function ModificarProducto({ onUpdate }) {
     const [id, setId] = useState('');
     const [producto, setProducto] = useState(null);
     const [error, setError] = useState('');
@@ -97,9 +100,9 @@ function ModificarProducto({ onUpdate }) {
                 </form>
             )}
         </div>
-    );
-}
+    );*/
 
+/*
 function EliminarProducto({ onDelete }) {
     const [id, setId] = useState('');
     const [producto, setProducto] = useState(null);
@@ -140,21 +143,42 @@ function EliminarProducto({ onDelete }) {
             )}
         </div>
     );
-}
+}*/
 
 function GestionProductos() {
-    const [mode, setMode] = useState('');
+   const[eliminar,setEliminar] = useState(false)
+   const[modificar,setModificar] = useState(false)
+   const[agregar,setAgregar] = useState(false)
+    const[busca,setBusca]=useState("")
+    const handlerModificar =()=>{
+        setModificar(true);
+        setAgregar(false);
+        setEliminar(false);
+        setBusca("m")
+    }
+    const handlerAgregar =()=>{
+            setAgregar(true);
+            setModificar(false);
+            setEliminar(false);
+    }
+    const handlerEliminar =()=>{
+            setEliminar(true);
+            setModificar(false);
+            setAgregar(false);
+            setBusca("e")
+    }
 
     return (
         <div>
             <h1 className="titulo">Gestión de Productos</h1>
-            <button onClick={() => setMode('add')}>Agregar Producto</button>
-            <button onClick={() => setMode('modify')}>Modificar Producto</button>
-            <button onClick={() => setMode('delete')}>Eliminar Producto</button>
+            <button onClick={handlerAgregar}>Agregar Producto</button>
+            <button onClick={handlerModificar}>Modificar Producto</button>
+            <button onClick={handlerEliminar}>Eliminar Producto</button>
 
-            {mode === 'add' && <FormularioAgregarProducto onAdd={() => setMode('')} />}
-            {mode === 'modify' && <ModificarProducto onUpdate={() => setMode('')} />}
-            {mode === 'delete' && <EliminarProducto onDelete={() => setMode('')} />}
+            { agregar && <FormularioAgregarProducto  />}
+            { modificar && <FormularioBuscarProducto busca={busca} />}
+            {eliminar && <FormularioBuscarProducto busca={busca}/>}
+            
         </div>
     );
 }
