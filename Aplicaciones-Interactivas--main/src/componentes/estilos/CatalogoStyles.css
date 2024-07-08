@@ -45,3 +45,52 @@ h1.subtitulo{
   .product {
     background-color: #f3f3f3;
   }
+  .addProduct {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: auto;
+    
+    border: 2px solid #b0b0b0;
+}
+
+.addProduct .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.addProduct label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.addProduct input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.addProduct button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.addProduct button:hover {
+    background-color: #45a049;
+}
+.addProduct .etiqueta {
+  display: block; 
+  padding: 8px;  
+  margin: 0;     
+  border-radius: 4px;
+  text-align: center;
+  background-color: #615a5a44;
+  color: black;
+  font-size: 16px;
+}

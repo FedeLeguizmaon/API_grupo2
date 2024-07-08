@@ -38,8 +38,11 @@ const FormularioAgregarProducto = () => {
 
     return(
         <>
+        <br></br>
+        <br></br>
             <div className="addProduct">
-                <label className="etiqueta">Agregue un producto</label>
+                
+                <label className="etiqueta">Crea un producto:</label>
                 <input type="Id" placeholder="Ingrese el id" value={id} onChange={(e) => setId(e.target.value)} />
                 <input type="Nombre" placeholder="Ingrese el nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
                 <input type="Descripcion" placeholder="Ingrese la descripcion" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
@@ -47,7 +50,7 @@ const FormularioAgregarProducto = () => {
                 <input type="Precio" placeholder="Ingrese el precio" value={precio} onChange={(e) => setPrecio(e.target.value)} />
                 <input type="Imagen" placeholder="Ingrese la imagen" value={imagen} onChange={(e) => setImagen(e.target.value)} />
                 <input type="Talle" placeholder="Ingrese el talle" value={talle} onChange={(e) => setTalle(e.target.value)} />
-                <button onClick={handleAgregar} type="submit">Agregar producto</button>
+                <button onClick={handleAgregar} type="submit">Crear producto</button>
             </div>
             {message && <p>{message}</p>}
         </>

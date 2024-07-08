@@ -63,16 +63,17 @@ const FormularioModificarProducto = (producto) => {
     return(
         <>
         <br></br>
-      
+        <br></br>
          <div className="addProduct">
-                
-                <input type="Id" placeholder="Ingrese el id" value={newid} onChange={(e) => setnId(e.target.value)} />
-                <input type="Nombre" placeholder="Ingrese el nombre" value={newnombre} onChange={(e) => setnNombre(e.target.value)} />
-                <input type="Descripcion" placeholder="Ingrese la descripcion" value={newdescripcion} onChange={(e) => setnDescripcion(e.target.value)} />
-                <input type="Stock" placeholder="Ingrese el stock" value={newstock} onChange={(e) => setnStock(e.target.value)} />
-                <input type="Precio" placeholder="Ingrese el precio" value={newprecio} onChange={(e) => setnPrecio(e.target.value)} />
-                <input type="Imagen" placeholder="Ingrese la imagen" value={newimagen} onChange={(e) => setnImagen(e.target.value)} />
-                <input type="Talle" placeholder="Ingrese el talle" value={newtalle} onChange={(e) => setnTalle(e.target.value)} />
+            
+                <label className="etiqueta">Modifica el producto:</label>
+                <input type="Id" placeholder="Ingrese el nuevo  id" value={newid} onChange={(e) => setnId(e.target.value)} />
+                <input type="Nombre" placeholder="Ingrese el nuevo  nombre" value={newnombre} onChange={(e) => setnNombre(e.target.value)} />
+                <input type="Descripcion" placeholder="Ingrese la nueva descripcion" value={newdescripcion} onChange={(e) => setnDescripcion(e.target.value)} />
+                <input type="Stock" placeholder="Ingrese el nuevo stock" value={newstock} onChange={(e) => setnStock(e.target.value)} />
+                <input type="Precio" placeholder="Ingrese el nuevo precio" value={newprecio} onChange={(e) => setnPrecio(e.target.value)} />
+                <input type="Imagen" placeholder="Ingrese una nueva imagen" value={newimagen} onChange={(e) => setnImagen(e.target.value)} />
+                <input type="Talle" placeholder="Ingrese otro talle" value={newtalle} onChange={(e) => setnTalle(e.target.value)} />
                 <button onClick={handleModificar} type="submit">Guardar Cambios</button>
             </div>
             
