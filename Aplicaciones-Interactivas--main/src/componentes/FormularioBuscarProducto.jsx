@@ -24,18 +24,21 @@ const FormularioBuscarProducto = ({busca}) => {
                     "Authorization": `Bearer ${user.Token}`,
                 },
             });
-
+    
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+    
             const data = await response.json();
-            if (response.ok) {
-                console.log(data);
-                if (data.length >= 0) {
-                    dispatch(addProduct(data[0])); // Añade el primer producto del array (asumiendo que solo hay uno)
-                    dispatch(selectProduct(data[0])); // Selecciona el primer producto como producto seleccionado
-                  }
+            console.log(data);
+    
+            if (data.length > 0) {
+                dispatch(addProduct(data[0])); // Añade el primer producto del array (asumiendo que solo hay uno)
+                dispatch(selectProduct(data[0])); // Selecciona el primer producto como producto seleccionado
                 setEncontro(true);
                 setError(false);
             } else {
-                setError(`Error: ${data.message}`);
+                setError("No se encontraron productos.");
                 setEncontro(false);
             }
         } catch (error) {

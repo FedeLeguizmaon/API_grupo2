@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { useSelector } from "react-redux";
 import './estilos/NavbarStyles.css'
 import { useNavigate } from "react-router-dom";
 
@@ -10,29 +10,44 @@ const Navbar = () => {
     const [maxPrice, setMaxPrice] = useState('');
     const [productosEncontrados, setProductosEncontrados] = useState(true);
     const navigate = useNavigate();
+    const user = useSelector((state) => state.user);
 
     useEffect(() => {
       const fetchProductos = async () => {
         try {
-          const response = await axios.get('http://localhost:3001/products');
-          setProductos(response.data);
+          const response = await fetch(`http://localhost:4002/productos`, {
+              method: "GET",
+              headers: {
+                  "Content-Type": "application/json",
+                  "Authorization": `Bearer ${user.Token}`,
+              },
+          });
+    
+          if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+          }
+    
+          const data = await response.json();
+          console.log(data.content);
+          setProductos(data.content);
+          
         } catch (error) {
-          console.error('Error al obtener productos:', error);
+          console.error('Error al buscar el producto:', error);
         }
-      };
+      }; 
       fetchProductos();
     }, []);
 
 
     // Función para filtrar los productos en función del término de búsqueda
     const filteredProductos = productos.filter(producto =>
-      producto.Name.toLowerCase().includes(searchTerm.toLowerCase())
+      producto.nombre.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     // Función para filtrar los productos en función del rango de precios
     const priceFilteredProductos = filteredProductos.filter(producto =>
-      (!minPrice || parseInt(producto.Precio) >= parseInt(minPrice)) &&
-      (!maxPrice || parseInt(producto.Precio) <= parseInt(maxPrice))
+      (!minPrice || parseInt(producto.precio) >= parseInt(minPrice)) &&
+      (!maxPrice || parseInt(producto.precio) <= parseInt(maxPrice))
     );
 
     useEffect(() => {
@@ -75,10 +90,10 @@ const Navbar = () => {
           {(searchTerm || maxPrice || minPrice) && priceFilteredProductos.length > 0 && (
             priceFilteredProductos.map(producto => (
               <article className="article">
-                  <div key={producto.id}>
-                    <h3>{producto.Name}</h3>
-                    <p>Precio: ${producto.Precio}</p>
-                    <img src={producto.Imagen} alt={producto.Name} style={{ width: '100px' }} />
+                  <div>
+                    <h3>{producto.nombre}</h3>
+                    <p>Precio: ${producto.precio}</p>
+                    <img src={producto.image} alt={producto.nombre} style={{ width: '100px' }} />
                     <br />
                     <button onClick={() => { navigate('/Detalle', {state: {producto}}) }}>Abrir detalle</button>
                   </div>

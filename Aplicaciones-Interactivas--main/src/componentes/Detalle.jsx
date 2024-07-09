@@ -27,14 +27,14 @@ const Detalle = () => {
     <div className='detail'>
       <button className="close-button" onClick={() => navigate('/Catalogo')}>X</button>
       <div>
-        <img className="image" src={producto.Imagen} alt={producto.Name} />
+        <img className="image" src={producto.image} alt={producto.nombre} />
       </div>
-      <div className="info" key={producto.id}>
-        <h3 style={{ fontSize: 30 }}>{producto.Name}</h3>
-        <p style={{ fontSize: 25 }}>{producto.Descripcion}</p>
-        <p style={{ fontSize: 25 }}>Stock: {producto.Stock}</p>
-        <p style={{ fontSize: 30 }}>Precio: ${producto.Precio}</p>
-        <button className="add-to-cart" onClick={() => handleAgregarAlCarrito(producto.Name, parseInt(producto.Precio))}>Agregar al Carrito</button>
+      <div className="info">
+        <h3 style={{ fontSize: 30 }}>{producto.nombre}</h3>
+        <p style={{ fontSize: 25 }}>{producto.descripcion}</p>
+        <p style={{ fontSize: 25 }}>Stock: {producto.stock}</p>
+        <p style={{ fontSize: 30 }}>Precio: ${producto.precio}</p>
+        <button className="add-to-cart" onClick={() => handleAgregarAlCarrito(producto.nombre, parseInt(producto.precio))}>Agregar al Carrito</button>
         <button className="BotonAtras" onClick={() => navigate('/Catalogo')}>Atras</button>
         <button className="BotonCarrito" onClick={() => navigate('/Carrito')}>Ir al carrito</button>
         {mensajeVisible && <div className={`mensaje-agregado ${mensajeOculto ? 'oculto' : ''}`}>Producto agregado!</div>}
