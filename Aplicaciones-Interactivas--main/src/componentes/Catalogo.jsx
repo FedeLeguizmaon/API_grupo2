@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar'; 
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from "react-redux";
+  
 import './estilos/CatalogoStyles.css';
-
+import { useSelector, useDispatch } from "react-redux";
+import { addProduct, selectProduct } from './Redux/ProductoSlice';
 const Catalogo = () => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [productos, setProductos] = useState([]);
   const navigate = useNavigate();
@@ -27,13 +29,24 @@ const Catalogo = () => {
         const data = await response.json();
         console.log(data.content);
         setProductos(data.content);
+
+        
+        data.content.forEach(producto => {
+          dispatch(addProduct(producto)
+          
+        );
+        console.log(producto.nombre)
+        console.log(producto.image)
+        });
       } catch (error) {
         console.error('Error al buscar el producto:', error);
       }
-    }; fetchProductos();
-  }, [])
+    }; 
+    fetchProductos();
+  }, [user.Token, dispatch]);
 
     const abrirDetalle = (producto) => {
+      dispatch(selectProduct(producto));
       navigate('/Detalle', { state: { producto } });
     };
   

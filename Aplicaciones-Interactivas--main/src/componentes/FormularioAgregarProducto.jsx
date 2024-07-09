@@ -23,7 +23,7 @@ const FormularioAgregarProducto = () => {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${user.Token}`,
             },
-            body: JSON.stringify({id, nombre, descripcion, stock, precio, imagen, talle})
+            body: JSON.stringify({id, nombre, descripcion, stock, precio, image: imagen, talle})
         })
         const data = await response.json();
         if (response.ok) {

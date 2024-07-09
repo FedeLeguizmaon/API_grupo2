@@ -43,13 +43,15 @@ const Carrito = () => {
         {!finalizar && carrito && carrito.length > 0 ? (
            <div>
            <ul>
-             {carrito.map((item, index) => (
-              
-               <li key={index}>
-                <br></br>
-                 {item.producto} - {item.precio}
-                 <FontAwesomeIcon className="basura"icon={faTrash} onClick={() => eliminarDelCarrito(item.producto, item.precio)}/>
-                  
+           {carrito.map((item, index) => (
+              <li key={index}>
+                <br />
+                {item.nombre} - {item.precio}
+                <FontAwesomeIcon
+                  className="basura"
+                  icon={faTrash}
+                  onClick={() => eliminarDelCarrito(item.id)}
+                />
                </li>
              ))}
            </ul>

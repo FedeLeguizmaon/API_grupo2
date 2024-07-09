@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import './estilos/DetalleStyles.css';
 import { CarritoContext } from './CarritoContext';
 import { useLocation, useNavigate } from "react-router-dom";
-
+import { useSelector,useDispatch } from "react-redux";
 const Detalle = () => {
   const location = useLocation();
   const producto = location.state.producto;
@@ -10,9 +10,15 @@ const Detalle = () => {
   const { agregarAlCarrito } = useContext(CarritoContext);
   const [mensajeVisible, setMensajeVisible] = useState(false);
   const [mensajeOculto, setMensajeOculto] = useState(false);
- 
-  const handleAgregarAlCarrito = (nombre, precio) => {
-    agregarAlCarrito(nombre, precio);
+  const productoSeleccionado = useSelector((state) => state.producto.productoSeleccionado);
+  const dispatch = useDispatch();
+  const handleAgregarAlCarrito = () => {
+    console.log(productoSeleccionado.nombre)
+    console.log(productoSeleccionado.Imagen)
+    console.log(productoSeleccionado.precio)
+    agregarAlCarrito(productoSeleccionado.nombre,productoSeleccionado.Imagen,productoSeleccionado.precio);
+    
+    
     setMensajeVisible(true);
     setMensajeOculto(false);
     setTimeout(() => {

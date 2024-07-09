@@ -26,15 +26,17 @@ const FormularioBuscarProducto = ({busca}) => {
             });
     
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error(`HTTP error! status: ${data.message}`);
             }
     
             const data = await response.json();
+            console.log("buscador")
             console.log(data);
     
-            if (data.length > 0) {
-                dispatch(addProduct(data[0])); // Añade el primer producto del array (asumiendo que solo hay uno)
+            if (data.length >= 0) {
+                console.log(data[0])
                 dispatch(selectProduct(data[0])); // Selecciona el primer producto como producto seleccionado
+                console.log(productoSeleccionado.nombre)
                 setEncontro(true);
                 setError(false);
             } else {
@@ -43,7 +45,7 @@ const FormularioBuscarProducto = ({busca}) => {
             }
         } catch (error) {
             console.error('Error al buscar el producto:', error);
-            setError(`Error: ${error.message}`);
+            setError(`Error: No se encontraron productos con ese nombre.`);
             setEncontro(false);
         }
     };
