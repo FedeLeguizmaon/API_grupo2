@@ -10,10 +10,6 @@ const Checkout = () => {
   const [mostrarMetodo, setMostrarMetodo] = useState(true);
   const navigate = useNavigate();
 
-  const actualizarPrecio = (nuevoPrecio) => {
-    setPrecioTotal(nuevoPrecio);
-  }
-
   const ElegirMetodoDePago = () => {
     setMostrarDescuentos(true);
   }
@@ -38,17 +34,7 @@ const Checkout = () => {
       {mostrarMetodo && !mostrarDescuentos && (
         <button onClick={ElegirMetodoDePago}>Elegir Método De Pago</button>
       )}
-      {mostrarDescuentos && (
-        <Descuentos
-          actualizarPrecio={actualizarPrecio}
-          totalPrecios={precioTotal}
-          setMostrarDescuentos={setMostrarDescuentos}
-          mostrarDescuentos={mostrarDescuentos}
-          setMostrarMetodo={setMostrarMetodo}
-          mostrarMetodo={mostrarMetodo}
-        />
-      )}
-      
+      {mostrarDescuentos && (<Descuentos/>)}
     </>
   );
 }

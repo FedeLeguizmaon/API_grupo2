@@ -18,7 +18,6 @@ const Carrito = () => {
     }
         
     navigate('/checkout', { state: { carrito: carrito, totalPrecios: totalPreciosTemp } });
-    finalizarCompra()
   };
   
   const handlerDescubrir = () =>{

@@ -16,21 +16,24 @@ const Descuentos = function(props) {
                 method: "GET",
                 headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${user.Token}`,
+                "Authorization": `Bearer ${user.Token}`
             }});
             if (response.ok) {
                 const data = await response.json();
-                let pedido = {idUsuario: data.id, productos: [], tipoD: tipoD};
+                let idUsuario = data.id;
                 let idproductos = [];
-                carrito.forEach(p => [...idproductos, p.Id]);
-                pedido.productos = idproductos;
+                console.log(carrito);
+                for (let i=0; i < carrito.length; i++) {
+                    idproductos[i] = carrito[i].Id;
+                }
+                console.log(idproductos);
                 const pedidoResponse = await fetch('http://localhost:4002/Pedido', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${user.Token}`
                     },
-                    body: JSON.stringify(pedido)
+                    body: JSON.stringify({idUsuario, idproductos, tipoD})
                 })
                 if (!pedidoResponse.ok) {
                     console.log("Error al crear pedido: ", pedidoResponse.status);
