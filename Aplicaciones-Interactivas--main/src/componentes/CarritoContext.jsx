@@ -6,9 +6,9 @@ export const CarritoContext = createContext();
 export const CarritoProvider = ({ children }) => {
   const [carrito, setCarrito] = useState([]);
   
-  const agregarAlCarrito = (nombre, precio) => {
+  const agregarAlCarrito = (nombre, imagen, precio) => {
     const id = new Date().getTime()
-    setCarrito([...carrito, { id,nombre, precio }]);
+    setCarrito([...carrito, { id, nombre, imagen, precio }]);
   };
 
   const Contador = carrito.length;

@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import axios from 'axios';
 import './estilos/CarritoStyles.css';
 import { CarritoContext } from './CarritoContext';
 import { useNavigate } from 'react-router-dom';
@@ -8,32 +7,22 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const Carrito = () => {
   const { carrito, eliminarDelCarrito, finalizarCompra } = useContext(CarritoContext);
-  const [totalPrecios, setTotalPrecios] = useState(0);
   const[finalizar,setFinalizar]= useState(false);
   const navigate = useNavigate();
   
   const handleFinalizarCompra = () => {
     setFinalizar(true);
-        let totalPreciosTemp = carrito.reduce((total, item) => total + item.precio, 0);
-        setTotalPrecios(totalPreciosTemp);
-        
-        navigate('/checkout', { state: { carrito, totalPrecios: totalPreciosTemp } });
-        finalizarCompra()
-      };
-  
-      const handlerDescubrir = () =>{
-        navigate('/Catalogo')
-
-      }
-  const saveCarrito = async () => {
-    try {
-      const response = await axios.post('http://localhost:3001/compras', {
-        Elementos: carrito
-      });
-      return response;
-    } catch (error) {
-      console.error('Error al cargar la compra:', error);
+    let totalPreciosTemp = 0;
+    for (let i=0; i < carrito.length; i++) {
+      totalPreciosTemp += carrito[i].precio;
     }
+        
+    navigate('/checkout', { state: { carrito: carrito, totalPrecios: totalPreciosTemp } });
+    finalizarCompra()
+  };
+  
+  const handlerDescubrir = () =>{
+    navigate('/Catalogo')
   };
 
   return (

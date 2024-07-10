@@ -2,16 +2,12 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FormularioModificarProducto from "./FormularioModificarProducto";
 import FormularioBorrarProducto from "./FormularioBorrarProductos";
-import { almacenaProduct } from "./Redux/ProductoSlice";
-import { addProduct,selectProduct } from "./Redux/ProductoSlice";
+import { selectProduct } from "./Redux/ProductoSlice";
 const FormularioBuscarProducto = ({busca}) => {
     const [buscado, setBuscado] = useState("");
     const user = useSelector((state) => state.user);
-    const productos = useSelector((state) => state.producto.productos);
     const productoSeleccionado = useSelector((state) => state.producto.productoSeleccionado);
     const dispatch = useDispatch();
-    const [message, setMessage] = useState("");
-    const [productoB, setProductoB] = useState("");
     const [encontro, setEncontro] = useState(false);
     const [error, setError] = useState(false);
     
@@ -24,12 +20,10 @@ const FormularioBuscarProducto = ({busca}) => {
                     "Authorization": `Bearer ${user.Token}`,
                 },
             });
-    
+            const data = await response.json();
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${data.message}`);
             }
-    
-            const data = await response.json();
             console.log("buscador")
             console.log(data);
     
@@ -59,8 +53,8 @@ const FormularioBuscarProducto = ({busca}) => {
             />
             <button onClick={buscarProducto}>Buscar Producto</button>
             {error && <p>{error}</p>}
-            {encontro && busca=="m" && < FormularioModificarProducto />}
-            {encontro && busca=="e" && < FormularioBorrarProducto />}
+            {encontro && busca === "m" && < FormularioModificarProducto />}
+            {encontro && busca === "e" && < FormularioBorrarProducto />}
         </>
     );
 };

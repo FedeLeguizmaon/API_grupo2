@@ -1,14 +1,13 @@
-import React, { useContext, useState } from 'react';
-import   './estilos/LogStyles.css';
-import LogIn from './LogIn';
+import React, { useState } from 'react';
+import './estilos/LogStyles.css';
 import { useNavigate } from 'react-router-dom';
 import { logoutUser } from "./Redux/UserSlice";
-
 import { useDispatch, useSelector } from "react-redux";
 import MensajeDeErrorIn from './mensajes/MensajeDeErrorIn';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import MensajeDeErrorOut from './mensajes/MensajeDeErrorOut';
+
 const OpcionesLog = () =>{
     const [verMas, setVerMas] = useState(false);
     const [error,setError] = useState(false)
@@ -20,26 +19,23 @@ const OpcionesLog = () =>{
         navigate("/MasOpciones")
     }
     const handlerClick =() =>{
-        {setMensaje(false)
-        if (user.Mail){
-        setError(true)
-    }else
-        navigate('/LogIn')}
-        
+        setMensaje(false);
+        if (user.Mail) {
+            setError(true);
+        } else navigate('/LogIn'); 
     }
     const handlerHistorial = () =>{
-        navigate('/historial')
+        navigate('/historial');
     }
     const handlerLogOut =()=>{
         setError(false)
         if (user.Mail) {
             dispatch(logoutUser());
-            navigate('/LogOut');}
-        else{
-            setMensaje(true)
-            
-            
-        }}
+            navigate('/LogOut');
+        } else {
+            setMensaje(true);
+        }
+    }
     
     
     return(

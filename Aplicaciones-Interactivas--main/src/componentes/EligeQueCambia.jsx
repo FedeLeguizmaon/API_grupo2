@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import FormularioCambiarContraseña from "./FormularioCambiarContraseña";
-import FormularioAgregarProducto from "./FormularioAgregarProducto";
 import FormularioCambiarCorreo from "./FormularioCambiarCorreo";
 
 const EligeQueCambia=()=>{
-    const navigate = useNavigate();
     const [contra,setContra]=useState(false);
     const [usuario,setUsuario]=useState(false);
     const handlerContra=()=>{

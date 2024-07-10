@@ -1,19 +1,13 @@
-import React, { useContext, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import { useDispatch,useSelector } from "react-redux";
-import { loginUser } from './Redux/UserSlice';
-import MensajeDeInicio from "./mensajes/MensajeDeInicio";
-import MensajeDeContaInc from "./mensajes/MensajeDeContaInc";
-import { changeMail,changeContra } from "./Redux/UserSlice";
+import { changeMail } from "./Redux/UserSlice";
 
 const FormularioCambiarCorreo =()=>{
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [newEmail, setNewEmail] = useState("");
-    const [newPassword, setNewPassword] = useState("");
     const [message, setMessage] = useState("");
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
+
     const handleChangeEmail = async () => {
         try {
             const response = await fetch(`http://localhost:4002/Usuario/cambiarMail`, {
@@ -40,6 +34,7 @@ const FormularioCambiarCorreo =()=>{
             setMessage("Error al cambiar el email.");
         }
     };
+    
     return(
         <>
          <div className="Input">

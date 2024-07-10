@@ -1,24 +1,13 @@
 
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch,useSelector } from "react-redux";
-import { loginUser } from './Redux/UserSlice';
-import MensajeDeInicio from "./mensajes/MensajeDeInicio";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import MensajeDeContaInc from "./mensajes/MensajeDeContaInc";
-import { changeMail,changeContra } from "./Redux/UserSlice";
-import FormularioCambiar from "./FormularioCambiarContraseña";
 import EligeQueCambia from "./EligeQueCambia";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import{faArrowLeft} from '@fortawesome/free-solid-svg-icons';
-import FormularioCambiarContraseña from "./FormularioCambiarContraseña";
+
 const MasOpciones =()=>{
-    const navigate = useNavigate()
     const[email,setEmail] = useState("");
     const[password,setPassword]=useState("");
-    const [newEmail, setNewEmail] = useState("");
-    const [newPassword, setNewPassword] = useState("");
     const [message, setMessage] = useState(false);
-    const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
     const [formulario,setFormulario]=useState(false)
     const handlerAtras=()=>{
@@ -29,7 +18,7 @@ const MasOpciones =()=>{
             // Validar campos vacíos
             setMessage(true);
             setFormulario(false);}
-        else if(user.Mail == email && user.Contraseña == password){
+        else if(user.Mail === email && user.Contraseña === password){
             setFormulario(true)
             setMessage(false);
         }

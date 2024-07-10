@@ -12,10 +12,8 @@ import LogIn from './componentes/LogIn';
 import Catalogo from './componentes/Catalogo';
 import Detalle from './componentes/Detalle';
 import LogOut from './componentes/LogOut';
-import MensajeDeErrorIn from './componentes/mensajes/MensajeDeErrorIn';
 import { CarritoContext } from './componentes/CarritoContext';
 import './styles.css';
-import MensajeDeErrorOut from './componentes/mensajes/MensajeDeErrorOut';
 import { useNavigate } from 'react-router-dom';
 import { CarritoProvider } from './componentes/CarritoContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -27,10 +25,10 @@ import { store } from './componentes/Redux/Store';
 import MensajeDeRegistro from './componentes/mensajes/MensajeDeRegistro';
 import MasOpciones from './componentes/MasOpciones';
 import{faArrowLeft} from '@fortawesome/free-solid-svg-icons';
-import FormularioAgregarProducto from './componentes/FormularioAgregarProducto';
 import FormularioCambiarCorreo from './componentes/FormularioCambiarCorreo';
 import FormularioCambiarContraseña from './componentes/FormularioCambiarContraseña';
 import HistorialDePedidos from './componentes/HistorialDePedidos';
+
 function Header() {
   const navigate = useNavigate();
   const { Contador } = useContext(CarritoContext);
@@ -42,7 +40,7 @@ function Header() {
 
   };
   const handlerAtras=()=>{
-    navigate(-1)
+    navigate(-1);
 }
   return (
     <header>

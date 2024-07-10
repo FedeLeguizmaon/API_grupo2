@@ -1,9 +1,8 @@
-import { useState,useEffect} from "react"
+import { useState } from "react"
 import { useDispatch,useSelector } from "react-redux";
-import { addProduct, changeProduct } from "./Redux/ProductoSlice";
+import { changeProduct } from "./Redux/ProductoSlice";
 
 const FormularioModificarProducto = (producto) => {
-    const[buscado,setBuscado]=useState("");
     const [newid, setnId] = useState("");
     const [newnombre, setnNombre] = useState("");
     const [newdescripcion, setnDescripcion] = useState("");
@@ -15,10 +14,6 @@ const FormularioModificarProducto = (producto) => {
     
     const dispatch = useDispatch();
     const [message, setMessage] = useState("");
-    const [productoB,setProductoB]= useState("");
-    const [encontro,setEncontro] = useState(false);
-    const[error,setError]= useState(false)
-    
    
     const handleModificar = async () => {
         try {

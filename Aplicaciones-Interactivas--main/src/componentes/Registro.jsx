@@ -1,6 +1,6 @@
-import React, { useContext, useState,useEffect } from "react";
+import React, { useState } from "react";
 import   './estilos/LogStyles.css';
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addUser } from "./Redux/UserSlice";
 import MensajeDeRegistro from "./mensajes/MensajeDeRegistro";
 const Registro = () =>{
@@ -12,7 +12,6 @@ const Registro = () =>{
     const [lastname, setapellido] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [Token,setToken] = useState("");
    
     const handlerRegistro = (e) => {
         e.preventDefault();

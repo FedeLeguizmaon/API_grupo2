@@ -1,69 +1,52 @@
 // Descuentos.js
-import React from 'react';
-import axios from 'axios';
+import React, { useContext } from 'react';
 import './estilos/CheckoutStyles.css';
+import { CarritoContext } from './CarritoContext';
+import { useSelector } from 'react-redux';
 
 const Descuentos = function(props) {
+    const { carrito } = useContext(CarritoContext);
+    const user = useSelector((state) => state.user);
     let tipoD = 0;
-    let { totalPrecios } = props;
-    
-    const getIdCarrito = async () => {
-        try {
-            const res = await axios.get(`http://localhost:3001/compras`);
-            const data = res.data;
-            const ultimoElemento = data[data.length - 1];
-            return ultimoElemento;
-        } catch(error) {
-            console.error("Se ha producido un error:", error)
-        }
-    }
 
     const handlerVerDesc = async () => {
         try {
-            const ultimoElemento = await getIdCarrito();
-            const id = ultimoElemento.id;
-    
-            if (tipoD === 2) {
-                props.actualizarPrecio(metodoDePagoC());
-                await axios.delete(`http://localhost:3001/compras/${id}`);
-                await axios.post(`http://localhost:3001/compras`, {
-                    carrito: { ...ultimoElemento.Elementos },
-                    precio_total: metodoDePagoC()
-                });
-            } else if (tipoD === 1) {
-                props.actualizarPrecio(metodoDePagoD());
-                await axios.delete(`http://localhost:3001/compras/${id}`);
-                await axios.post(`http://localhost:3001/compras`, {
-                    carrito: { ...ultimoElemento.Elementos },
-                    precio_total: metodoDePagoD()
-                });
-            } else {
-                props.actualizarPrecio(totalPrecios);
-                await axios.delete(`http://localhost:3001/compras/${id}`);
-                await axios.post(`http://localhost:3001/compras`, {
-                    carrito: { ...ultimoElemento.Elementos },
-                    precio_total: totalPrecios
-                });
+            const mail = user.Mail;
+            const response = await fetch(`http://localhost:4002/Usuario/mail/${mail}`, {
+                method: "GET",
+                headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${user.Token}`,
+            }});
+            if (response.ok) {
+                const data = await response.json();
+                let pedido = {idUsuario: data.id, productos: [], tipoD: tipoD};
+                let idproductos = [];
+                carrito.forEach(p => [...idproductos, p.Id]);
+                pedido.productos = idproductos;
+                const pedidoResponse = await fetch('http://localhost:4002/Pedido', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${user.Token}`
+                    },
+                    body: JSON.stringify(pedido)
+                })
+                if (!pedidoResponse.ok) {
+                    console.log("Error al crear pedido: ", pedidoResponse.status);
+                }
             }
-            props.setMostrarDescuentos(false);
-            props.setMostrarMetodo(false)
         } catch(error) {
             console.error("Se ha producido un error:", error)
         }
     };
 
     const metodoDePagoC = () => {
-        const desc = totalPrecios * 0.05;
-        const precioConDescuento = totalPrecios - desc;
         tipoD = 2;
-        return precioConDescuento;
     }
 
     const metodoDePagoD = () => {
-        const desc = totalPrecios * 0.1;
-        const precioConDescuento = totalPrecios - desc;
         tipoD = 1;
-        return precioConDescuento;
     }
 
     return(

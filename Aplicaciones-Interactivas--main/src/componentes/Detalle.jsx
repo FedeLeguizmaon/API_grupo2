@@ -2,7 +2,9 @@ import React, { useContext, useState } from "react";
 import './estilos/DetalleStyles.css';
 import { CarritoContext } from './CarritoContext';
 import { useLocation, useNavigate } from "react-router-dom";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { selectProduct } from "./Redux/ProductoSlice";
+
 const Detalle = () => {
   const location = useLocation();
   const producto = location.state.producto;
@@ -12,11 +14,13 @@ const Detalle = () => {
   const [mensajeOculto, setMensajeOculto] = useState(false);
   const productoSeleccionado = useSelector((state) => state.producto.productoSeleccionado);
   const dispatch = useDispatch();
+
   const handleAgregarAlCarrito = () => {
-    console.log(productoSeleccionado.nombre)
-    console.log(productoSeleccionado.Imagen)
-    console.log(productoSeleccionado.precio)
-    agregarAlCarrito(productoSeleccionado.nombre,productoSeleccionado.Imagen,productoSeleccionado.precio);
+    dispatch(selectProduct(producto));
+    console.log(productoSeleccionado.nombre);
+    console.log(productoSeleccionado.imagen);
+    console.log(productoSeleccionado.precio);
+    agregarAlCarrito(productoSeleccionado.nombre,productoSeleccionado.imagen,productoSeleccionado.precio);
     
     
     setMensajeVisible(true);
@@ -40,7 +44,7 @@ const Detalle = () => {
         <p style={{ fontSize: 25 }}>{producto.descripcion}</p>
         <p style={{ fontSize: 25 }}>Stock: {producto.stock}</p>
         <p style={{ fontSize: 30 }}>Precio: ${producto.precio}</p>
-        <button className="add-to-cart" onClick={() => handleAgregarAlCarrito(producto.nombre, parseInt(producto.precio))}>Agregar al Carrito</button>
+        <button className="add-to-cart" onClick={() => {handleAgregarAlCarrito()}}>Agregar al Carrito</button>
         <button className="BotonAtras" onClick={() => navigate('/Catalogo')}>Atras</button>
         <button className="BotonCarrito" onClick={() => navigate('/Carrito')}>Ir al carrito</button>
         {mensajeVisible && <div className={`mensaje-agregado ${mensajeOculto ? 'oculto' : ''}`}>Producto agregado!</div>}

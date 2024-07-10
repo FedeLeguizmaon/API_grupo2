@@ -1,58 +1,57 @@
-import React, { useContext, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import { useDispatch ,useSelector} from "react-redux";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { loginUser } from './Redux/UserSlice';
 import MensajeDeInicio from "./mensajes/MensajeDeInicio";
 import MensajeDeContaInc from "./mensajes/MensajeDeContaInc";
-import MensajeDeErrorIn from "./mensajes/MensajeDeErrorIn";
+
 const LogIn = () => {
-    const HandlerReturn=()=>{
-        navigate("/")
+    const HandlerReturn = () => {
+        navigate("/");
     }
-const navigate = useNavigate();
-const handlerRegistro = () =>{
-    navigate('/Registro')
-}
-const [boton,setBoton] = useState(true)
-const user = useSelector(state => state.user);
-const[credError,setCredError]=useState(false)
-const [inicio,setInicio]= useState(false)
-const dispatch=useDispatch();
-const[email,setEmail] = useState("");
-const[password,setPassword]=useState("");
-const handleLogin = async (e) => {
-    e.preventDefault();
-    
-    try {
-        const response = await fetch("http://localhost:4002/api/v1/auth/authenticate", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email, password }),
-        });
+    const navigate = useNavigate();
+    const handlerRegistro = () =>{
+        navigate('/Registro')
+    }
+    const [boton, setBoton] = useState(true);
+    const [credError, setCredError] = useState(false)
+    const [inicio, setInicio] = useState(false)
+    const dispatch = useDispatch();
+    const[email, setEmail] = useState("");
+    const[password, setPassword] = useState("");
+    const handleLogin = async (e) => {
+        e.preventDefault();
         
-        const data = await response.json();
-        console.log(response)
-        
-         if (response.ok) {
-            console.log("funco")
-            const { access_token } = data;
-            console.log(data)
-            dispatch(loginUser({ Mail: email, Contraseña: password, Token: access_token }));
-            setInicio(true)
-            setCredError(false)
-            setBoton(false)
-        } else {
-            console.log(" no funco")
-            console.error("Error logging in:", data.message);
-            setCredError(true);
-            setInicio(false)
+        try {
+            const response = await fetch("http://localhost:4002/api/v1/auth/authenticate", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password }),
+            });
+            
+            const data = await response.json();
+            console.log(response)
+            
+            if (response.ok) {
+                console.log("funco")
+                const { access_token } = data;
+                console.log(data)
+                dispatch(loginUser({ Mail: email, Contraseña: password, Token: access_token }));
+                setInicio(true)
+                setCredError(false)
+                setBoton(false)
+            } else {
+                console.log(" no funco")
+                console.error("Error logging in:", data.message);
+                setCredError(true);
+                setInicio(false)
+            }
+        } catch (error) {
+            console.error("Error:", error);
         }
-    } catch (error) {
-        console.error("Error:", error);
-    }
-};
+    };
 
     
     
