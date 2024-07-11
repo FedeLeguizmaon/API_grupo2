@@ -5,7 +5,7 @@ import { CarritoContext } from './CarritoContext';
 import { useSelector } from 'react-redux';
 
 const Descuentos = function(props) {
-    const { carrito, productoIds } = useContext(CarritoContext);
+    const { carrito, productoIds, finalizarCompra } = useContext(CarritoContext);
     const user = useSelector((state) => state.user);
     let tipoD = 0;
 
@@ -32,11 +32,11 @@ const Descuentos = function(props) {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${user.Token}`
                     },
-                    body: JSON.stringify({idUsuario, productoIds:productoIds, tipoD})
+                    body: JSON.stringify({idUsuario:idUsuario, productos: productoIds, tipoD:tipoD})
                 })
                 if (!pedidoResponse.ok) {
                     console.log("Error al crear pedido: ", pedidoResponse.status);
-                }
+                } else finalizarCompra(); props.ElegirMetodoDePago();
             }
         } catch(error) {
             console.error("Se ha producido un error:", error)

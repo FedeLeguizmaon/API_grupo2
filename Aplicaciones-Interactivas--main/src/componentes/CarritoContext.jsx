@@ -22,7 +22,7 @@ export const CarritoProvider = ({ children }) => {
   };
   
   return (
-    <CarritoContext.Provider value={{ carrito, Contador,agregarAlCarrito, eliminarDelCarrito, finalizarCompra,productoIds: carrito.map(item => item.Id) } }>
+    <CarritoContext.Provider value={{ carrito, Contador,agregarAlCarrito, eliminarDelCarrito, finalizarCompra,productoIds: carrito.map(item => parseInt(item.Id)) } }>
       {children}
     </CarritoContext.Provider>
   );

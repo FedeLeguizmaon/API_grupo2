@@ -34,7 +34,7 @@ const Checkout = () => {
       {mostrarMetodo && !mostrarDescuentos && (
         <button onClick={ElegirMetodoDePago}>Elegir Método De Pago</button>
       )}
-      {mostrarDescuentos && (<Descuentos/>)}
+      {mostrarDescuentos && (<Descuentos ElegirMetodoDePago={ElegirMetodoDePago}/>)}
     </>
   );
 }
