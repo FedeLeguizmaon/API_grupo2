@@ -49,28 +49,43 @@ const Catalogo = () => {
       dispatch(selectProduct(producto));
       navigate('/Detalle', { state: { producto } });
     };
-  
+  const handleInicio=()=>{
+    navigate("/LogIn")
+  }
 
-  return (
-    <div>
-      <h1 className='titulo' >Camisetas Originals</h1> 
-      <Navbar />
-      <h1 className='subtitulo'>Catalogo de productos</h1>
-      <div className='productos'>
-        {productos.map(producto => (
-          <div onClick={() => abrirDetalle(producto)} className='product'>
-            <h3>{producto.nombre}</h3>
-            <p>Precio: ${producto.precio}</p>
-            <img src={producto.image} alt={producto.nombre} style={{ width: '150px' }} />
-            
-          </div>
-        ))}
+  if (!user.Mail) {
+    return (
+      <>
+        {console.log(user.Mail)}
+        <h1 className='titulo'>Camisetas Originals</h1>
+        <h3>Inicia sesión para ver el catálogo</h3>
+        <button onClick={handleInicio}>Inicia sesión</button>
+      </>
+    );
+  } else {
+    return (
+      <div>
+        <h1 className='titulo'>Camisetas Originals</h1>
+        
+        <Navbar />
+        <h1 className='subtitulo'>Catálogo de productos</h1>
+        <div className='productos'>
+          {productos.map(producto => (
+            <div key={producto.id} onClick={() => abrirDetalle(producto)} className='product'>
+              <h3>{producto.nombre}</h3>
+              <p>Precio: ${producto.precio}</p>
+              <img src={producto.image} alt={producto.nombre} style={{ width: '150px' }} />
+            </div>
+          ))}
+        </div>
+        
+        <footer className='footer'>
+          <p>© 2024 Tienda de Remeras. Todos los derechos reservados.</p>
+        </footer>
       </div>
-      <footer className='footer'>
-  <p>© 2024 Tienda de Remeras. Todos los derechos reservados.</p>
-</footer>
-    </div>
-  );
+    );
+  }
 };
+
 
 export default Catalogo;

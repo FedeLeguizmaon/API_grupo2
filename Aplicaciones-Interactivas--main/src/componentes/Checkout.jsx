@@ -12,6 +12,7 @@ const Checkout = () => {
 
   const ElegirMetodoDePago = () => {
     setMostrarDescuentos(true);
+    
   }
   useEffect(() => {
     if (!mostrarMetodo) {
@@ -30,11 +31,11 @@ const Checkout = () => {
           <button onClick={() => navigate('/')}>Regresar al inicio</button>
         </>
       )}
-      <h2>Precio de la compra: {precioTotal}</h2>
+      <h2>Precio de la compra: {precioTotal} pesos</h2>
       {mostrarMetodo && !mostrarDescuentos && (
         <button onClick={ElegirMetodoDePago}>Elegir Método De Pago</button>
       )}
-      {mostrarDescuentos && (<Descuentos ElegirMetodoDePago={ElegirMetodoDePago}/>)}
+      {mostrarDescuentos && (<Descuentos setMostrarDescuentos={setMostrarDescuentos} setMostrarMetodo={setMostrarMetodo}/>)}
     </>
   );
 }
