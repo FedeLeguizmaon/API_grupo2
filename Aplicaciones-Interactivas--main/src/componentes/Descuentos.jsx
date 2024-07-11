@@ -5,7 +5,7 @@ import { CarritoContext } from './CarritoContext';
 import { useSelector } from 'react-redux';
 
 const Descuentos = function(props) {
-    const { carrito } = useContext(CarritoContext);
+    const { carrito, productoIds } = useContext(CarritoContext);
     const user = useSelector((state) => state.user);
     let tipoD = 0;
 
@@ -21,19 +21,18 @@ const Descuentos = function(props) {
             if (response.ok) {
                 const data = await response.json();
                 let idUsuario = data.id;
-                let idproductos = [];
+                
                 console.log(carrito);
-                for (let i=0; i < carrito.length; i++) {
-                    idproductos[i] = carrito[i].Id;
-                }
-                console.log(idproductos);
+                
+                console.log("estos serian los id")
+                console.log(productoIds);
                 const pedidoResponse = await fetch('http://localhost:4002/Pedido', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${user.Token}`
                     },
-                    body: JSON.stringify({idUsuario, idproductos, tipoD})
+                    body: JSON.stringify({idUsuario, productoIds:productoIds, tipoD})
                 })
                 if (!pedidoResponse.ok) {
                     console.log("Error al crear pedido: ", pedidoResponse.status);

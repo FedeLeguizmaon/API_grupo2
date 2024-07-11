@@ -38,7 +38,7 @@ const Carrito = () => {
                 <FontAwesomeIcon
                   className="basura"
                   icon={faTrash}
-                  onClick={() => eliminarDelCarrito(item.id)}
+                  onClick={() => eliminarDelCarrito(item.Fecha)}
                 />
                </li>
              ))}

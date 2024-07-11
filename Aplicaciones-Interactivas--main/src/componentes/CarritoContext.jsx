@@ -6,15 +6,15 @@ export const CarritoContext = createContext();
 export const CarritoProvider = ({ children }) => {
   const [carrito, setCarrito] = useState([]);
   
-  const agregarAlCarrito = (nombre, imagen, precio) => {
-    const id = new Date().getTime()
-    setCarrito([...carrito, { id, nombre, imagen, precio }]);
+  const agregarAlCarrito = (Id,nombre, imagen, precio) => {
+    const Fecha = new Date().getTime()
+    setCarrito([...carrito, { Id, nombre, imagen, precio,Fecha }]);
   };
 
   const Contador = carrito.length;
 
-  const eliminarDelCarrito = (id) => {
-    setCarrito(carrito.filter(item => item.id !== id));
+  const eliminarDelCarrito = (Fecha) => {
+    setCarrito(carrito.filter(item => item.Fecha !== Fecha));
   };
 
   const finalizarCompra = () => {
@@ -22,7 +22,7 @@ export const CarritoProvider = ({ children }) => {
   };
   
   return (
-    <CarritoContext.Provider value={{ carrito, Contador,agregarAlCarrito, eliminarDelCarrito, finalizarCompra }}>
+    <CarritoContext.Provider value={{ carrito, Contador,agregarAlCarrito, eliminarDelCarrito, finalizarCompra,productoIds: carrito.map(item => item.Id) } }>
       {children}
     </CarritoContext.Provider>
   );

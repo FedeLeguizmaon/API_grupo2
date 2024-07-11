@@ -17,10 +17,10 @@ const Detalle = () => {
 
   const handleAgregarAlCarrito = () => {
     dispatch(selectProduct(producto));
-    console.log(productoSeleccionado.nombre);
+    console.log(productoSeleccionado.id);
     console.log(productoSeleccionado.imagen);
     console.log(productoSeleccionado.precio);
-    agregarAlCarrito(productoSeleccionado.nombre,productoSeleccionado.imagen,productoSeleccionado.precio);
+    agregarAlCarrito(productoSeleccionado.id,productoSeleccionado.nombre,productoSeleccionado.imagen,productoSeleccionado.precio);
     
     
     setMensajeVisible(true);
