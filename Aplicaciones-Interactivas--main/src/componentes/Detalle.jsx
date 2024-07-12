@@ -44,7 +44,11 @@ const Detalle = () => {
         <p style={{ fontSize: 25 }}>{producto.descripcion}</p>
         <p style={{ fontSize: 25 }}>Stock: {producto.stock}</p>
         <p style={{ fontSize: 30 }}>Precio: ${producto.precio}</p>
-        <button className="add-to-cart" onClick={() => {handleAgregarAlCarrito()}}>Agregar al Carrito</button>
+        {producto.stock > 0 ? (
+          <button className="add-to-cart" onClick={() => {handleAgregarAlCarrito()}}>Agregar al Carrito</button>
+        ) : (
+          <p style={{ fontSize: 30 }}>No hay suficiente stock!</p>
+        )}
         <button className="BotonAtras" onClick={() => navigate('/Catalogo')}>Atras</button>
         <button className="BotonCarrito" onClick={() => navigate('/Carrito')}>Ir al carrito</button>
         {mensajeVisible && <div className={`mensaje-agregado ${mensajeOculto ? 'oculto' : ''}`}>Producto agregado!</div>}

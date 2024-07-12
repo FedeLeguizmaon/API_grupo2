@@ -56,7 +56,6 @@ const Descuentos = function(props) {
                     console.log("Respuesta del backend:", pedidoData);
                     finalizarCompra();
                     props.setMostrarMetodo(false);
-                    props.setMostrarDescuentos(false)
                 }
             
         } catch(error) {

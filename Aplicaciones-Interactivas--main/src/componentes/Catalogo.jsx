@@ -10,7 +10,6 @@ const Catalogo = () => {
   const user = useSelector((state) => state.user);
   const [productos, setProductos] = useState([]);
   const navigate = useNavigate();
-  const[mostrarStock,setMostrarStock]=usestate(false)
 
   useEffect(() => {
     const fetchProductos = async () => {
@@ -47,9 +46,6 @@ const Catalogo = () => {
   }, [user.Token, dispatch]);
 
     const abrirDetalle = (producto) => {
-      if (producto.stock <= 0) {
-        setMostrarStock(false);
-      }
       dispatch(selectProduct(producto));
       navigate('/Detalle', { state: { producto } });
     };

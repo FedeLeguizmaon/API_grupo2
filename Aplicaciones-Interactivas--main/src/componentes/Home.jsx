@@ -14,8 +14,6 @@ const Home = () => {
         
       </nav>
       <header>
-        {console.log(user.Nombre)}
-        {console.log(user.Rol)}
         <h1 className='bienvenido'>BIENVENIDOS A CAMISETAS ORIGINALS</h1>
         <div className="tarjeta-mensaje" onClick={handleVerCatalogo}>
           <h1>¡Compra tus mejores remeras!</h1>

@@ -38,7 +38,7 @@ const LogIn = () => {
                 console.log("funco")
                 const { access_token } = data;
                 console.log(data)
-                dispatch(loginUser({ Mail: email, Contraseña: password, Token: access_token }));
+                dispatch(loginUser({ Mail: email, Contraseña: password, Token: access_token, Rol: data.role }));
                 setInicio(true)
                 setCredError(false)
                 setBoton(false)

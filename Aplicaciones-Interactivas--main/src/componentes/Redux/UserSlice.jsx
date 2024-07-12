@@ -34,11 +34,11 @@ export const userSlice = createSlice({
             return initialState;
         },
         loginUser: (state, action) => {
-            const { Mail, Contraseña, Token} = action.payload;
+            const { Mail, Contraseña, Token, Rol} = action.payload;
             state.Mail = Mail;
             state.Contraseña = Contraseña;
             state.Token = Token;
-           
+            state.Rol = Rol;
         }
     
     },

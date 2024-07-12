@@ -13,7 +13,7 @@ const HistorialDePedidos=()=>{
     const handlerHistorial = async ()=>{
         try {
             console.log(user.Mail)
-            const response = await fetch(`http://localhost:4002/Pedido/historial/${"nicolasSicalo@gmail.com"}`, {
+            const response = await fetch(`http://localhost:4002/Pedido/historial/${user.Mail}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -27,7 +27,8 @@ const HistorialDePedidos=()=>{
                 console.log("data:")
                 console.log(data)
                 setMessage(`${data.message}`);
-                // 
+                productos = data.map(pedido => setProductos([...productos, pedido.productos]));
+                console.log(productos);
             } else {
                 setMessage(`Error: ${data.message}`);
             }

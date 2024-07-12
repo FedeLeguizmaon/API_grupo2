@@ -33,40 +33,34 @@ import HistorialDePedidos from './componentes/HistorialDePedidos';
 function Header() {
   const navigate = useNavigate();
   const { Contador } = useContext(CarritoContext);
-  const [mostarOpciones,SetMostrarOpciones] = useState(false);
+  const [mostrarOpciones, setMostrarOpciones] = useState(false);
   const user = useSelector((state) => state.user);
-  const handlerMostrarOpciones = () =>{
-    SetMostrarOpciones(!mostarOpciones);
-    
 
+  const handlerMostrarOpciones = () => {
+    setMostrarOpciones(!mostrarOpciones);
   };
-  const handlerAtras=()=>{
+
+  const handlerAtras = () => {
     navigate(-1);
-}
+  }
 
   return (
     <header>
       <nav className='navegador'>
-      
         <ul>
-          <li><FontAwesomeIcon icon={faShirt} onClick={() => navigate('/')}  /></li> 
+          <li><FontAwesomeIcon icon={faShirt} onClick={() => navigate('/')} /></li>
           <li><button onClick={() => navigate('/catalogo')}>Catálogo de Productos</button></li>
-          <li><button onClick={() => navigate('/gestion-productos')}>Gestión de Productos</button></li>
-          <li><FontAwesomeIcon icon={faCartShopping}  onClick={() => navigate('/Carrito')}  /></li> 
-          <li><FontAwesomeIcon icon={faUser} onClick= {handlerMostrarOpciones} /></li>
-          <li ><FontAwesomeIcon icon={faArrowLeft} onClick={handlerAtras} /></li>
-          {mostarOpciones && <OpcionesLog />}
-          {Contador > 0 ? (
-            <li className="CantElementosCarrito">{Contador}</li>
-          ) : (
-            <li></li>
+          {user.Rol === 'ADMIN' && (
+            <li><button onClick={() => navigate('/gestion-productos')}>Gestión de Productos</button></li>
           )}
-           
+          <li><FontAwesomeIcon icon={faCartShopping} onClick={() => navigate('/Carrito')} /></li>
+          <li><FontAwesomeIcon icon={faUser} onClick={handlerMostrarOpciones} /></li>
+          <li><FontAwesomeIcon icon={faArrowLeft} onClick={handlerAtras} /></li>
+          {mostrarOpciones && <OpcionesLog />}
+          {Contador > 0 && <li className="CantElementosCarrito">{Contador}</li>}
         </ul>
       </nav>
-     
     </header>
-    
   );
 }
 
