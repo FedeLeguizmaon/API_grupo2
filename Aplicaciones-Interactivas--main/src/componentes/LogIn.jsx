@@ -33,7 +33,7 @@ const LogIn = () => {
             
             const data = await response.json();
             console.log(response)
-            
+            //ACA HACER FETCH PARA MANEJAR BIEN EL LOGIN
             if (response.ok) {
                 console.log("funco")
                 const { access_token } = data;

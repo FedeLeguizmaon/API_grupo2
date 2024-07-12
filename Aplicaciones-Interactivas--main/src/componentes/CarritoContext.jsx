@@ -1,4 +1,4 @@
-import React, { createContext, useState,useContext } from 'react';
+import React, { createContext, useState,useContext,useEffect} from 'react';
 
 export const CarritoContext = createContext();
 
@@ -17,12 +17,20 @@ export const CarritoProvider = ({ children }) => {
     setCarrito(carrito.filter(item => item.Fecha !== Fecha));
   };
 
+  const calcularPrecioTotal = () => {
+    return carrito.reduce((total, item) => total + item.precio, 0);
+  };
   const finalizarCompra = () => {
     setCarrito([]);
   };
-  
+  // Calcula el precio total cada vez que el carrito cambia
+  useEffect(() => {
+    // Puedes hacer algo con el precio total aquí si es necesario
+    const precioTotal = calcularPrecioTotal();
+    console.log('Precio total del carrito:', precioTotal);
+  }, [carrito]);
   return (
-    <CarritoContext.Provider value={{ carrito, Contador,agregarAlCarrito, eliminarDelCarrito, finalizarCompra,productoIds: carrito.map(item => parseInt(item.Id)) } }>
+    <CarritoContext.Provider value={{ carrito, Contador,agregarAlCarrito, eliminarDelCarrito, finalizarCompra,productoIds: carrito.map(item => parseInt(item.Id)), precioTotal: calcularPrecioTotal(), } }>
       {children}
     </CarritoContext.Provider>
   );

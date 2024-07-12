@@ -1,4 +1,5 @@
 import React,{ useContext,useState} from 'react';
+import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import './App.css'; 
 import Registro from './componentes/Registro';
@@ -33,7 +34,7 @@ function Header() {
   const navigate = useNavigate();
   const { Contador } = useContext(CarritoContext);
   const [mostarOpciones,SetMostrarOpciones] = useState(false);
-
+  const user = useSelector((state) => state.user);
   const handlerMostrarOpciones = () =>{
     SetMostrarOpciones(!mostarOpciones);
     
@@ -42,6 +43,7 @@ function Header() {
   const handlerAtras=()=>{
     navigate(-1);
 }
+
   return (
     <header>
       <nav className='navegador'>

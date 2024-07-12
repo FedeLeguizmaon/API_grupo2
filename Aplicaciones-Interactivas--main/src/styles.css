@@ -4,11 +4,12 @@ body {
 }
 .navegador{
     list-style-type: none;
-    padding: 0;
+    padding: 0px;
     display: flex;
     justify-content: space-around;
     background-color: #3f3f3f28;
     cursor: pointer; 
+    
     
 }
 .navegador:hover{
@@ -18,7 +19,7 @@ body {
 
 nav ul li {
     display: inline;
-    margin: 0px 95px;
+    margin-left: 150px;
     position: relative;
 }
 
@@ -37,7 +38,7 @@ nav a {
     transform: translateX(-50%);
     background-color: red;
     border-radius: 70%;
-    left: 75%;
+    left: 61%;
     font-size: small;
     padding: 2.5px ;
 }   

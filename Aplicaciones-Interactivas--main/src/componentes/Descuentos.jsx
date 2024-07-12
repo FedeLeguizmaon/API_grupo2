@@ -4,7 +4,7 @@ import { CarritoContext } from './CarritoContext';
 import { useSelector } from 'react-redux';
 
 const Descuentos = function(props) {
-    const { carrito, productoIds, finalizarCompra } = useContext(CarritoContext);
+    const { carrito, productoIds, finalizarCompra,precioTotal} = useContext(CarritoContext);
     const user = useSelector((state) => state.user);
     let tipoD = 0;
 
@@ -18,19 +18,22 @@ const Descuentos = function(props) {
                     "Authorization": `Bearer ${user.Token}`
                 }
             });
-            if (response.ok) {
+            
                 const data = await response.json();
                 let idUsuario = data.id;
                 
                 console.log(carrito);
-                console.log("Estos serían los ID:");
+                console.log("hola");
+                console.log(tipoD);
                 console.log(productoIds);
+                
                 
                 // Verificar el JSON que se va a enviar
                 const requestBody = {
                     idUsuario: idUsuario,
                     productos: productoIds,
-                    tipoD: tipoD
+                    tipoD: tipoD,
+                    precioTotal: precioTotal
                 };
                 console.log("JSON enviado al backend:", JSON.stringify(requestBody));
 
@@ -55,18 +58,18 @@ const Descuentos = function(props) {
                     props.setMostrarMetodo(false);
                     props.setMostrarDescuentos(false)
                 }
-            }
+            
         } catch(error) {
             console.error("Se ha producido un error:", error);
         }
     };
 
     const metodoDePagoC = () => {
-        tipoD = 2;
+        tipoD = "c";
     }
 
     const metodoDePagoD = () => {
-        tipoD = 1;
+        tipoD = "d";
     }
 
     return (

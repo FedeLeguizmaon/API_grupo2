@@ -10,6 +10,7 @@ const Catalogo = () => {
   const user = useSelector((state) => state.user);
   const [productos, setProductos] = useState([]);
   const navigate = useNavigate();
+  const[mostrarStock,setMostrarStock]=usestate(false)
 
   useEffect(() => {
     const fetchProductos = async () => {
@@ -46,6 +47,9 @@ const Catalogo = () => {
   }, [user.Token, dispatch]);
 
     const abrirDetalle = (producto) => {
+      if (producto.stock <= 0) {
+        setMostrarStock(false);
+      }
       dispatch(selectProduct(producto));
       navigate('/Detalle', { state: { producto } });
     };
@@ -66,11 +70,15 @@ const Catalogo = () => {
     return (
       <div>
         <h1 className='titulo'>Camisetas Originals</h1>
-        
+        {console.log("a")}
+        {console.log(user.Mail)}
+        {console.log(user.Nombre)}
+        {console.log(user.Rol)}
         <Navbar />
         <h1 className='subtitulo'>Catálogo de productos</h1>
         <div className='productos'>
           {productos.map(producto => (
+            
             <div key={producto.id} onClick={() => abrirDetalle(producto)} className='product'>
               <h3>{producto.nombre}</h3>
               <p>Precio: ${producto.precio}</p>
