@@ -1,7 +1,7 @@
-import React,{ useContext,useState} from 'react';
+import React, { useContext, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
-import './App.css'; 
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import './App.css';
 import Registro from './componentes/Registro';
 import OpcionesLog from './componentes/OpcionesLog';
 import Carrito from './componentes/Carrito';
@@ -13,19 +13,14 @@ import LogIn from './componentes/LogIn';
 import Catalogo from './componentes/Catalogo';
 import Detalle from './componentes/Detalle';
 import LogOut from './componentes/LogOut';
-import { CarritoContext } from './componentes/CarritoContext';
+import { CarritoContext, CarritoProvider } from './componentes/CarritoContext';
 import './styles.css';
-import { useNavigate } from 'react-router-dom';
-import { CarritoProvider } from './componentes/CarritoContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShirt } from '@fortawesome/free-solid-svg-icons';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
-import{faCartShopping} from '@fortawesome/free-solid-svg-icons';
+import { faShirt, faUser, faCartShopping, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Provider } from 'react-redux';
 import { store } from './componentes/Redux/Store';
 import MensajeDeRegistro from './componentes/mensajes/MensajeDeRegistro';
 import MasOpciones from './componentes/MasOpciones';
-import{faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 import FormularioCambiarCorreo from './componentes/FormularioCambiarCorreo';
 import FormularioCambiarContraseña from './componentes/FormularioCambiarContraseña';
 import HistorialDePedidos from './componentes/HistorialDePedidos';
@@ -64,7 +59,6 @@ function Header() {
   );
 }
 
-
 function App() {
   return (
     <Provider store={store}>
@@ -73,10 +67,10 @@ function App() {
           <div className="App">
             <Header />
             <Routes>
-              <Route path='/historial' element={<HistorialDePedidos/>}/>
-              <Route  path='/formCor' element={<FormularioCambiarCorreo/>}/>
-              <Route  path='/formCon' element={<FormularioCambiarContraseña/>}/>
-              <Route path='/MasOpciones' element={<MasOpciones/>}/>
+              <Route path='/historial' element={<HistorialDePedidos />} />
+              <Route path='/formCor' element={<FormularioCambiarCorreo />} />
+              <Route path='/formCon' element={<FormularioCambiarContraseña />} />
+              <Route path='/MasOpciones' element={<MasOpciones />} />
               <Route path='/Registro' element={<Registro />} />
               <Route path='/LogIn' element={<LogIn />} />
               <Route path='/Opciones' element={<OpcionesLog />} />
@@ -86,10 +80,9 @@ function App() {
               <Route path="/descuentos" element={<Descuentos />} />
               <Route path="/gestion-productos" element={<GestionProductos />} />
               <Route path="/catalogo" element={<Catalogo />} />
-              <Route path='Detalle' element={<Detalle />} />
-              <Route path='/MensajeRegistro' element={<MensajeDeRegistro/>}/>
-              <Route path='/LogOut' element={<LogOut/>}/>
-              
+              <Route path='/Detalle' element={<Detalle />} />
+              <Route path='/MensajeRegistro' element={<MensajeDeRegistro />} />
+              <Route path='/LogOut' element={<LogOut />} />
             </Routes>
           </div>
         </Router>

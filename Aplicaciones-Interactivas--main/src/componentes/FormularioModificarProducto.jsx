@@ -29,7 +29,7 @@ const FormularioModificarProducto = (producto) => {
                     descripcion: newdescripcion,
                     stock: newstock,
                     precio: newprecio,
-                    imagen: newimagen,
+                    image: newimagen,
                     talle: newtalle
                 }),
             });
