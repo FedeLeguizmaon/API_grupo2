@@ -42,7 +42,8 @@ const Registro = () =>{
                     const token = data.access_token;
                     console.log("hasta aca ok");
                     setRegistroExitoso(true);
-                    dispatch(addUser({ Mail: email, Contraseña: password, Nombre: firstname, Apellido: lastname, Rol: role,Token:token }));
+                    console.log(data.id)
+                    dispatch(addUser({ Mail: email, Contraseña: password, Nombre: firstname, Apellido: lastname, Rol: role,Token:token,Id:data.id }));
                 }
             
                 

@@ -90,9 +90,9 @@
   flex-direction: column;
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin-left: 0px;
   background-color: rgb(170, 170, 170);
-  position: absolute;
+ 
   
  
  
@@ -101,7 +101,7 @@
 
 .SubOpciones .Opcion {
   white-space: nowrap; 
-  display: block;/* Para evitar que el texto se envuelva */
+ 
   top: 100%;
 }
 .MensajesOp{

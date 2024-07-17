@@ -1,29 +1,62 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    
-    Mail: "",
-    Contraseña: "",
-    Nombre:"",
-    Apellido:"",
-    Rol:"",
-    Token:"",
+    users: [],
+    errorMessage: "",
+    successMessage: "",
 };
 
 export const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        addUser: (state, action) => {
-            const { Id,Mail, Contraseña, Nombre, Apellido, Rol,Token } = action.payload;
-            
-            state.Mail = Mail;
-            state.Contraseña = Contraseña;
-            state.Nombre = Nombre;
-            state.Apellido = Apellido;
-            state.Rol = Rol;
-            state.Token = Token;
+        addUserSuccess: (state, action) => {
+            state.users.push(action.payload);
+            state.successMessage = "User registered successfully!";
+            state.errorMessage = "";
         },
+        addUserFailure: (state, action) => {
+            state.errorMessage = action.payload;
+            state.successMessage = "";
+        },
+    },
+});
+
+
+
+export const registerUser = ({ email, password, firstname, lastname, role }) => (dispatch) => {
+    fetch("http://localhost:4002/api/v1/auth/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password, firstname, lastname, role }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.message) {
+                dispatch(addUserFailure(data.message));
+            } else {
+                const user = {
+                    Id: data.id,
+                    Mail: email,
+                    Contraseña: password,
+                    Nombre: firstname,
+                    Apellido: lastname,
+                    Rol: role,
+                    Token: data.access_token,
+                };
+                dispatch(addUserSuccess(user));
+            }
+        })
+        .catch((error) => {
+            dispatch(addUserFailure("An error occurred during registration."));
+        });
+},
+
+
+
+
         changeMail: (state, action) => {
             state.Mail = action.payload;
         },
@@ -34,7 +67,8 @@ export const userSlice = createSlice({
             return initialState;
         },
         loginUser: (state, action) => {
-            const { Mail, Contraseña, Token, Rol} = action.payload;
+            const { Id, Mail, Contraseña, Token, Rol} = action.payload;
+            state.Id = Id;
             state.Mail = Mail;
             state.Contraseña = Contraseña;
             state.Token = Token;
@@ -44,5 +78,5 @@ export const userSlice = createSlice({
     },
 });
 
-export const { addUser, changeMail,logoutUser,loginUser,changeContra} = userSlice.actions;
+export const { addUser, changeMail,logoutUser,loginUser,changeContra,addUserSuccess, addUserFailure} = userSlice.actions;
 export default userSlice.reducer;

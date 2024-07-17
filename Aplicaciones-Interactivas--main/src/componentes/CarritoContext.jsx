@@ -26,8 +26,8 @@ export const CarritoProvider = ({ children }) => {
   // Calcula el precio total cada vez que el carrito cambia
   useEffect(() => {
     // Puedes hacer algo con el precio total aquí si es necesario
-    const precioTotal = calcularPrecioTotal();
-    console.log('Precio total del carrito:', precioTotal);
+    let precioTotal = calcularPrecioTotal();
+    
   }, [carrito]);
   return (
     <CarritoContext.Provider value={{ carrito, Contador,agregarAlCarrito, eliminarDelCarrito, finalizarCompra,productoIds: carrito.map(item => parseInt(item.Id)), precioTotal: calcularPrecioTotal(), } }>

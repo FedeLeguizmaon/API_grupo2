@@ -4,60 +4,54 @@ import { CarritoContext } from './CarritoContext';
 import { useSelector } from 'react-redux';
 
 const Descuentos = function(props) {
-    const { carrito, productoIds, finalizarCompra,precioTotal} = useContext(CarritoContext);
+    const { carrito, productoIds, finalizarCompra} = useContext(CarritoContext);
+    let {precioTotal}=useContext(CarritoContext);
     const user = useSelector((state) => state.user);
     let tipoD = 0;
 
     const handlerVerDesc = async () => {
         try {
-            const mail = user.Mail;
-            const response = await fetch(`http://localhost:4002/Usuario/mail/${mail}`, {
-                method: "GET",
+            const idUsuario = user.Id;
+            
+            console.log(carrito);
+            console.log("hola");
+            console.log(tipoD);
+            console.log(productoIds);
+            console.log(user.Id)
+            
+            // Verificar el JSON que se va a enviar
+            const requestBody = {
+                idUsuario: idUsuario,
+                productos: productoIds,
+                tipoD: tipoD,
+                precioTotal: precioTotal
+            };
+            console.log("JSON enviado al backend:", JSON.stringify(requestBody));
+
+            const pedidoResponse = await fetch('http://localhost:4002/Pedido', {
+                method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${user.Token}`
-                }
+                },
+                body: JSON.stringify(requestBody)
             });
-            
-                const data = await response.json();
-                let idUsuario = data.id;
-                
-                console.log(carrito);
-                console.log("hola");
-                console.log(tipoD);
-                console.log(productoIds);
-                
-                
-                // Verificar el JSON que se va a enviar
-                const requestBody = {
-                    idUsuario: idUsuario,
-                    productos: productoIds,
-                    tipoD: tipoD,
-                    precioTotal: precioTotal
-                };
-                console.log("JSON enviado al backend:", JSON.stringify(requestBody));
 
-                const pedidoResponse = await fetch('http://localhost:4002/Pedido', {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${user.Token}`
-                    },
-                    body: JSON.stringify(requestBody)
-                });
-
-                if (!pedidoResponse.ok) {
-                    console.log("Error al crear pedido: ", pedidoResponse.status);
-                    
-                    const errorData = await pedidoResponse.json();
-                    console.error("Error details: ", errorData);
-                } else {
-                    const pedidoData = await pedidoResponse.json();
-                    console.log("Respuesta del backend:", pedidoData);
-                    finalizarCompra();
-                    props.setMostrarMetodo(false);
-                    props.setMostrarDescuentos(false);
-                }
+            if (!pedidoResponse.ok) {
+                console.log("Error al crear pedido: ", pedidoResponse.status);
+                
+                const errorData = await pedidoResponse.json();
+                console.error("Error details: ", errorData);
+            } else {
+                const pedidoData = await pedidoResponse.json();
+                console.log("Respuesta del backend:", pedidoData);
+                finalizarCompra();
+                props.setMostrarMetodo(false);
+                props.setMostrarDescuentos(false);
+                
+                console.log(pedidoData.precioTotal)
+                props.setPrecioTotal(pedidoData.precioTotal)
+            }
             
         } catch(error) {
             console.error("Se ha producido un error:", error);
@@ -70,6 +64,7 @@ const Descuentos = function(props) {
 
     const metodoDePagoD = () => {
         tipoD = "d";
+    
     }
 
     return (

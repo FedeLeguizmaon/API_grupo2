@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const HistorialDePedidos = () => {
     const user = useSelector((state) => state.user);
-    const [productos, setProductos] = useState([]);
+    const [pedidos, setPedidos] = useState([]);
     const navigate = useNavigate();
     
     useEffect(() => {
@@ -22,11 +22,8 @@ const HistorialDePedidos = () => {
                 const data = await response.json();
     
                 if (response.ok) {              
-                    // Extraer y aplanar la lista de productos de cada pedido
-                    const productosPedidos = data.flatMap(pedido => pedido.productos);
-                    
-                    // Actualizar el estado de productos usando setProductos
-                    setProductos(productosPedidos);
+                    // Actualizar el estado de pedidos usando setPedidos
+                    setPedidos(data);
                 } else {
                     console.log(`Error: ${data.message}`);
                 }
@@ -40,18 +37,32 @@ const HistorialDePedidos = () => {
     const abrirDetalle = (producto) => {
         navigate('/Detalle', { state: { producto } });
     };
+
+    const calcularPrecioTotal = (productos) => {
+        return productos.reduce((total, producto) => total + producto.precio, 0);
+    };
+
     return (
         <>
-            {console.log(productos)}
+            {console.log(pedidos)}
             {console.log("nashe")}
             <h1>Tus pedidos</h1>
-            {productos.length > 0 ? (
-                <div className="productos">
-                    {productos.map((producto, index) => (
-                        <div key={index} className="product" onClick={() => abrirDetalle(producto)}>
-                            <h3>{producto.nombre}</h3>
-                            <p>Precio: ${producto.precio}</p>
-                            <img src={producto.image} alt={producto.nombre} style={{ width: '150px' }} />
+            {pedidos.length > 0 ? (
+                <div className="pedidos">
+                    {pedidos.map((pedido, index) => (
+                        <div key={index} className="pedido">
+                            <h2>Pedido {index + 1}</h2>
+                            <div className="productos">
+                                {pedido.productos.map((producto, prodIndex) => (
+                                    <div key={prodIndex} className="product" onClick={() => abrirDetalle(producto)}>
+                                        <h3>{producto.nombre}</h3>
+                                        <p>Precio: ${producto.precio}</p>
+                                        <img src={producto.image} alt={producto.nombre} style={{ width: '150px' }} />
+                                    </div>
+                                ))}
+                            </div>
+                            <h3>Cantidad de productos:{pedido.cantidad}</h3>
+                            <h3>Precio total: {pedido.precioTotal}</h3>
                         </div>
                     ))}
                 </div>

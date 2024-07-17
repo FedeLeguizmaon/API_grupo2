@@ -1,19 +1,20 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Descuentos from './Descuentos';
-
+import { CarritoContext } from './CarritoContext';
 const Checkout = () => {
   const location = useLocation();
-  const { totalPrecios } = location.state || { totalPrecios: 0 };
   const [mostrarDescuentos, setMostrarDescuentos] = useState(false);
-  const [precioTotal, setPrecioTotal] = useState(totalPrecios);
+  const { carrito, productoIds, finalizarCompra,precioTotal} = useContext(CarritoContext);
+  const [precioTotales, setPrecioTotal] = useState(precioTotal);
   const [mostrarMetodo, setMostrarMetodo] = useState(true);
   const navigate = useNavigate();
 
-  const ElegirMetodoDePago = () => {
+  const ElegirMetodoDePago = (precio) => {
     setMostrarDescuentos(true);
     
   }
+  
   useEffect(() => {
     if (!mostrarMetodo) {
       const timer = setTimeout(() => {
@@ -31,11 +32,11 @@ const Checkout = () => {
           <button onClick={() => navigate('/')}>Regresar al inicio</button>
         </>
       )}
-      <h2>Precio de la compra: {precioTotal} pesos</h2>
+      <h2>Precio de la compra: {precioTotales} pesos</h2>
       {mostrarMetodo && !mostrarDescuentos && (
         <button onClick={ElegirMetodoDePago}>Elegir Método De Pago</button>
       )}
-      {mostrarDescuentos && (<Descuentos setMostrarDescuentos={setMostrarDescuentos} setMostrarMetodo={setMostrarMetodo}/>)}
+      {mostrarDescuentos && (<Descuentos setMostrarDescuentos={setMostrarDescuentos} setMostrarMetodo={setMostrarMetodo} setPrecioTotal={setPrecioTotal}/>)}
     </>
   );
 }

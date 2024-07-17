@@ -12,12 +12,7 @@ const Carrito = () => {
   
   const handleFinalizarCompra = () => {
     setFinalizar(true);
-    let totalPreciosTemp = 0;
-    for (let i=0; i < carrito.length; i++) {
-      totalPreciosTemp += carrito[i].precio;
-    }
-        
-    navigate('/checkout', { state: { carrito: carrito, totalPrecios: totalPreciosTemp } });
+    navigate('/checkout', { state: { carrito: carrito } });
   };
   
   const handlerDescubrir = () =>{

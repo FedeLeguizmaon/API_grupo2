@@ -82,6 +82,9 @@ const Catalogo = () => {
             </div>
           ))}
         </div>
+        <footer className='footer'>
+          <p>© 2024 Tienda de Remeras. Todos los derechos reservados.</p>
+        </footer>
       </div>
     );
   }
